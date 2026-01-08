@@ -15,7 +15,7 @@ contact_links:
     about: Please read our project's guidelines here.
   - name: Look at our Code of Conduct
     url: https://github.com/jmandevel/FossSweeper/blob/main/CODE_OF_CONDUCT.md
-    about: Please read our standard's of behaviour here.
+    about: Please read our standards of behaviour here.
   - name: Read about Markdown Syntax
     url: https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
     about: Look here for how to format your text with Markdown.
