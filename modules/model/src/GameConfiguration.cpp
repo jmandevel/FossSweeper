@@ -120,18 +120,18 @@ std::strong_ordering fsweep::GameConfiguration::operator<=>(
   return static_cast<int>(this->game_difficulty) <=> static_cast<int>(other.game_difficulty);
 }
 
-fsweep::GameDifficulty fsweep::GameConfiguration::GetGameDifficulty() const noexcept
+fsweep::GameDifficulty fsweep::GameConfiguration::getGameDifficulty() const noexcept
 {
   return this->game_difficulty;
 }
 
-int fsweep::GameConfiguration::GetButtonsWide() const noexcept { return this->buttons_wide; }
+int fsweep::GameConfiguration::getButtonsWide() const noexcept { return this->buttons_wide; }
 
-int fsweep::GameConfiguration::GetButtonsTall() const noexcept { return this->buttons_tall; }
+int fsweep::GameConfiguration::getButtonsTall() const noexcept { return this->buttons_tall; }
 
-int fsweep::GameConfiguration::GetBombCount() const noexcept { return this->bomb_count; }
+int fsweep::GameConfiguration::getBombCount() const noexcept { return this->bomb_count; }
 
-int fsweep::GameConfiguration::GetButtonCount() const noexcept
+int fsweep::GameConfiguration::getButtonCount() const noexcept
 {
   return static_cast<std::size_t>(this->buttons_wide * this->buttons_tall);
 }

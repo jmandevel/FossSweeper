@@ -7,16 +7,18 @@
  *
  * This file is part of FossSweeper.
  *
- * FossSweeper is free software: you can redistribute it and/or modify it under the terms of the GNU
- * General Public License as published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
+ * FossSweeper is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
  *
- * FossSweeper is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
- * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * FossSweeper is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
  *
- * You should have received a copy of the GNU General Public License along with FossSweeper. If not,
- * see <https://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License along with
+ * FossSweeper. If not, see <https://www.gnu.org/licenses/>.
  *
  */
 
@@ -28,40 +30,38 @@
 
 #include "wx_include.hpp"
 
-namespace fsweep
-{
-  class DesktopView;
-  class GamePanel;
+namespace fsweep {
+class DesktopView;
+class GamePanel;
 
-  class GameFrame : public wxFrame
-  {
-   private:
-    std::reference_wrapper<fsweep::DesktopView> view;
-    wxMenuItem* beginner_item;
-    wxMenuItem* intermediate_item;
-    wxMenuItem* expert_item;
-    wxMenuItem* question_marks_item;
-    fsweep::GamePanel* game_panel;
+class GameFrame : public wxFrame {
+private:
+  std::reference_wrapper<fsweep::DesktopView> view;
+  wxMenuItem *beginner_item;
+  wxMenuItem *intermediate_item;
+  wxMenuItem *expert_item;
+  wxMenuItem *question_marks_item;
+  fsweep::GamePanel *game_panel;
 
-    void resizeGamePanel(int x, int y);
+  void resizeGamePanel(int x, int y);
 
-   public:
-    GameFrame(fsweep::DesktopView& view);
+public:
+  GameFrame(fsweep::DesktopView &view);
 
-    void OnNew(wxCommandEvent& e);
-    void OnBeginner(wxCommandEvent& e);
-    void OnIntermediate(wxCommandEvent& e);
-    void OnExpert(wxCommandEvent& e);
-    void OnCustom(wxCommandEvent& e);
-    void OnPixelScale(wxCommandEvent& e);
-    void OnQuestionMarks(wxCommandEvent& e);
-    void OnExit(wxCommandEvent& e);
-    void OnCredits(wxCommandEvent& e);
-    void OnLicense(wxCommandEvent& e);
-    void OnAbout(wxCommandEvent& e);
+  void onNew(wxCommandEvent &e);
+  void onBeginner(wxCommandEvent &e);
+  void onIntermediate(wxCommandEvent &e);
+  void onExpert(wxCommandEvent &e);
+  void onCustom(wxCommandEvent &e);
+  void onPixelScale(wxCommandEvent &e);
+  void onQuestionMarks(wxCommandEvent &e);
+  void onExit(wxCommandEvent &e);
+  void onCredits(wxCommandEvent &e);
+  void onLicense(wxCommandEvent &e);
+  void onAbout(wxCommandEvent &e);
 
-    DECLARE_EVENT_TABLE()
-  };
-}  // namespace fsweep
+  DECLARE_EVENT_TABLE()
+};
+} // namespace fsweep
 
 #endif

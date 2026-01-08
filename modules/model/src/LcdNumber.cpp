@@ -88,4 +88,4 @@ fsweep::LcdDigit fsweep::LcdNumber::operator[](std::size_t digit_i) const
   return this->digits[digit_i];
 }
 
-int fsweep::LcdNumber::GetNumber() const noexcept { return this->number; }
+int fsweep::LcdNumber::getNumber() const noexcept { return this->number; }

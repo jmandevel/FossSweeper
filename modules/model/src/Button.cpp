@@ -54,7 +54,7 @@ fsweep::Button::Button(char c) noexcept
   }
 }
 
-void fsweep::Button::Unpress() noexcept
+void fsweep::Button::unpress() noexcept
 {
   if (this->button_state == fsweep::ButtonState::Down)
   {
@@ -62,7 +62,7 @@ void fsweep::Button::Unpress() noexcept
   }
 }
 
-void fsweep::Button::Press() noexcept
+void fsweep::Button::press() noexcept
 {
   if (this->button_state != fsweep::ButtonState::Flagged)
   {
@@ -70,7 +70,7 @@ void fsweep::Button::Press() noexcept
   }
 }
 
-void fsweep::Button::AltPress(bool questions_enabled) noexcept
+void fsweep::Button::altPress(bool questions_enabled) noexcept
 {
   if (this->button_state == fsweep::ButtonState::None)
   {
@@ -93,7 +93,7 @@ void fsweep::Button::AltPress(bool questions_enabled) noexcept
   }
 }
 
-void fsweep::Button::RemoveQuestion() noexcept
+void fsweep::Button::removeQuestion() noexcept
 {
   if (this->button_state == fsweep::ButtonState::Questioned)
   {
@@ -101,23 +101,23 @@ void fsweep::Button::RemoveQuestion() noexcept
   }
 }
 
-void fsweep::Button::SetHasBomb(bool has_bomb) noexcept { this->has_bomb = has_bomb; }
+void fsweep::Button::setHasBomb(bool has_bomb) noexcept { this->has_bomb = has_bomb; }
 
-void fsweep::Button::SetSurroundingBombs(int surrounding_bombs) noexcept
+void fsweep::Button::setSurroundingBombs(int surrounding_bombs) noexcept
 {
   this->surrounding_bombs = surrounding_bombs;
 }
 
-void fsweep::Button::AddSurroundingBomb() noexcept { this->surrounding_bombs++; }
+void fsweep::Button::addSurroundingBomb() noexcept { this->surrounding_bombs++; }
 
-bool fsweep::Button::GetIsPressable() const noexcept
+bool fsweep::Button::getIsPressable() const noexcept
 {
   return this->button_state != fsweep::ButtonState::Down &&
          this->button_state != fsweep::ButtonState::Flagged;
 }
 
-bool fsweep::Button::GetHasBomb() const noexcept { return this->has_bomb; }
+bool fsweep::Button::getHasBomb() const noexcept { return this->has_bomb; }
 
-int fsweep::Button::GetSurroundingBombs() const noexcept { return this->surrounding_bombs; }
+int fsweep::Button::getSurroundingBombs() const noexcept { return this->surrounding_bombs; }
 
-fsweep::ButtonState fsweep::Button::GetButtonState() const noexcept { return this->button_state; }
+fsweep::ButtonState fsweep::Button::getButtonState() const noexcept { return this->button_state; }

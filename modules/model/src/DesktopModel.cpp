@@ -34,99 +34,99 @@ fsweep::DesktopModel::DesktopModel(fsweep::GameModel& game_model) noexcept
 {
 }
 
-bool fsweep::DesktopModel::TryChangePixelScale(int new_pixel_scale)
+bool fsweep::DesktopModel::tryChangePixelScale(int new_pixel_scale)
 {
   if (this->pixel_scale == new_pixel_scale) return false;
   this->pixel_scale = new_pixel_scale;
   return true;
 }
 
-void fsweep::DesktopModel::LeftPress() { this->left_down = true; }
+void fsweep::DesktopModel::leftPress() { this->left_down = true; }
 
-void fsweep::DesktopModel::LeftRelease(fsweep::Timer& timer)
+void fsweep::DesktopModel::leftRelease(fsweep::Timer& timer)
 {
   auto& game_model = this->game_model.get();
-  if (game_model.GetGameState() == fsweep::GameState::Playing)
+  if (game_model.getGameState() == fsweep::GameState::Playing)
   {
-    game_model.UpdateTime(timer.GetGameTime());
+    game_model.updateTime(timer.getGameTime());
   }
-  auto initially_playing = game_model.GetGameState() == fsweep::GameState::Playing;
+  auto initially_playing = game_model.getGameState() == fsweep::GameState::Playing;
   if (this->hover_button_o.has_value())
   {
     auto& hover_button = this->hover_button_o.value();
     if (this->right_down)
     {
-      game_model.AreaClickButton(hover_button.x, hover_button.y);
+      game_model.areaClickButton(hover_button.x, hover_button.y);
     }
     else
     {
-      game_model.ClickButton(hover_button.x, hover_button.y);
+      game_model.clickButton(hover_button.x, hover_button.y);
     }
-    if (game_model.GetGameState() == fsweep::GameState::Playing && !initially_playing)
+    if (game_model.getGameState() == fsweep::GameState::Playing && !initially_playing)
     {
-      timer.Start();
+      timer.start();
     }
-    else if (game_model.GetGameState() == fsweep::GameState::Dead ||
-              game_model.GetGameState() == fsweep::GameState::Cool && initially_playing)
+    else if (game_model.getGameState() == fsweep::GameState::Dead ||
+              game_model.getGameState() == fsweep::GameState::Cool && initially_playing)
     {
-      timer.Stop();
+      timer.stop();
     }
   }
   else if (this->hover_face)
   {
-    game_model.NewGame();
-    timer.Stop();
+    game_model.newGame();
+    timer.stop();
   }
   this->left_down = false;
 }
 
-void fsweep::DesktopModel::RightPress(fsweep::Timer& timer)
+void fsweep::DesktopModel::rightPress(fsweep::Timer& timer)
 {
   auto& game_model = this->game_model.get();
   this->right_down = true;
-  if (game_model.GetGameState() == fsweep::GameState::Playing)
+  if (game_model.getGameState() == fsweep::GameState::Playing)
   {
-    game_model.UpdateTime(timer.GetGameTime());
+    game_model.updateTime(timer.getGameTime());
   }
   if (!this->left_down && this->hover_button_o.has_value())
   {
     auto& hover_button = this->hover_button_o.value();
-    game_model.AltClickButton(hover_button.x, hover_button.y);
+    game_model.altClickButton(hover_button.x, hover_button.y);
   }
 }
 
-void fsweep::DesktopModel::RightRelease(fsweep::Timer& timer)
+void fsweep::DesktopModel::rightRelease(fsweep::Timer& timer)
 {
   auto& game_model = this->game_model.get();
-  auto initially_playing = game_model.GetGameState() == fsweep::GameState::Playing;
+  auto initially_playing = game_model.getGameState() == fsweep::GameState::Playing;
   if (this->hover_button_o.has_value() && this->left_down)
   {
     auto& hover_button = this->hover_button_o.value();
-    game_model.AreaClickButton(hover_button.x, hover_button.y);
-    if (game_model.GetGameState() == fsweep::GameState::Dead ||
-              game_model.GetGameState() == fsweep::GameState::Cool)
+    game_model.areaClickButton(hover_button.x, hover_button.y);
+    if (game_model.getGameState() == fsweep::GameState::Dead ||
+              game_model.getGameState() == fsweep::GameState::Cool)
     {
-      timer.Stop();
+      timer.stop();
     }
   }
   this->right_down = false;
 }
 
-void fsweep::DesktopModel::MouseLeave() { this->hover_button_o = std::nullopt; }
+void fsweep::DesktopModel::mouseLeave() { this->hover_button_o = std::nullopt; }
 
-void fsweep::DesktopModel::MouseMove(int x, int y)
+void fsweep::DesktopModel::mouseMove(int x, int y)
 {
   this->hover_button_o = std::nullopt;
-  if (x >= this->GetBorderSize() && x < this->GetSize().x - this->GetBorderSize() &&
-      y >= this->GetHeaderHeight() && y < this->GetSize().y - this->GetBorderSize())
+  if (x >= this->getBorderSize() && x < this->getSize().x - this->getBorderSize() &&
+      y >= this->getHeaderHeight() && y < this->getSize().y - this->getBorderSize())
   {
     this->hover_button_o =
-        fsweep::ButtonPosition((x - this->GetBorderSize()) / this->GetButtonDimension(),
-                               (y - this->GetHeaderHeight()) / this->GetButtonDimension());
+        fsweep::ButtonPosition((x - this->getBorderSize()) / this->getButtonDimension(),
+                               (y - this->getHeaderHeight()) / this->getButtonDimension());
   }
-  const auto face_point = this->GetFacePoint();
-  this->hover_face = x >= face_point.x && x < face_point.x + this->GetFaceDimension() &&
-                     y >= face_point.y && y < face_point.y + this->GetFaceDimension();
+  const auto face_point = this->getFacePoint();
+  this->hover_face = x >= face_point.x && x < face_point.x + this->getFaceDimension() &&
+                     y >= face_point.y && y < face_point.y + this->getFaceDimension();
 }
 
 const int FACE_BUTTON_DIMENSION = 24;
@@ -135,35 +135,35 @@ const int BUTTON_DIMENSION = 16;
 const int LCD_DIGIT_WIDTH = 16;
 const int HEADER_HEIGHT = BORDER_SIZE * 2 + FACE_BUTTON_DIMENSION;
 
-int fsweep::DesktopModel::GetPixelScale() const noexcept { return this->pixel_scale; }
+int fsweep::DesktopModel::getPixelScale() const noexcept { return this->pixel_scale; }
 
-int fsweep::DesktopModel::GetFaceDimension() const noexcept
+int fsweep::DesktopModel::getFaceDimension() const noexcept
 {
   return this->pixel_scale * FACE_BUTTON_DIMENSION;
 }
 
-int fsweep::DesktopModel::GetBorderSize() const noexcept { return this->pixel_scale * BORDER_SIZE; }
+int fsweep::DesktopModel::getBorderSize() const noexcept { return this->pixel_scale * BORDER_SIZE; }
 
-int fsweep::DesktopModel::GetButtonDimension() const noexcept
+int fsweep::DesktopModel::getButtonDimension() const noexcept
 {
   return this->pixel_scale * BUTTON_DIMENSION;
 }
 
-int fsweep::DesktopModel::GetLcdDigitWidth() const noexcept
+int fsweep::DesktopModel::getLcdDigitWidth() const noexcept
 {
   return this->pixel_scale * LCD_DIGIT_WIDTH;
 }
 
-int fsweep::DesktopModel::GetHeaderHeight() const noexcept
+int fsweep::DesktopModel::getHeaderHeight() const noexcept
 {
   return this->pixel_scale * HEADER_HEIGHT;
 }
 
-fsweep::Sprite fsweep::DesktopModel::GetFaceSprite() const noexcept
+fsweep::Sprite fsweep::DesktopModel::getFaceSprite() const noexcept
 {
   const auto& game_model = this->game_model.get();
-  if (game_model.GetGameState() == fsweep::GameState::None ||
-      game_model.GetGameState() == fsweep::GameState::Playing)
+  if (game_model.getGameState() == fsweep::GameState::None ||
+      game_model.getGameState() == fsweep::GameState::Playing)
   {
     if (this->left_down && this->hover_face)
     {
@@ -172,15 +172,15 @@ fsweep::Sprite fsweep::DesktopModel::GetFaceSprite() const noexcept
     else if (this->left_down && this->hover_button_o.has_value())
     {
       const auto& hover_button = this->hover_button_o.value();
-      const auto& button = game_model.GetButton(hover_button.x, hover_button.y);
-      if (button.GetButtonState() != fsweep::ButtonState::Down &&
-          button.GetButtonState() != fsweep::ButtonState::Flagged)
+      const auto& button = game_model.getButton(hover_button.x, hover_button.y);
+      if (button.getButtonState() != fsweep::ButtonState::Down &&
+          button.getButtonState() != fsweep::ButtonState::Flagged)
       {
         return fsweep::Sprite::ButtonShocked;
       }
     }
   }
-  else if (game_model.GetGameState() == fsweep::GameState::Cool)
+  else if (game_model.getGameState() == fsweep::GameState::Cool)
   {
     if (this->left_down && this->hover_face)
     {
@@ -191,7 +191,7 @@ fsweep::Sprite fsweep::DesktopModel::GetFaceSprite() const noexcept
       return fsweep::Sprite::ButtonCool;
     }
   }
-  else  // if (model.GetGameState() == fsweep::GameState::Dead)
+  else  // if (model.getGameState() == fsweep::GameState::Dead)
   {
     if (this->left_down && this->hover_face)
     {
@@ -205,26 +205,26 @@ fsweep::Sprite fsweep::DesktopModel::GetFaceSprite() const noexcept
   return fsweep::Sprite::ButtonSmile;
 }
 
-fsweep::Sprite fsweep::DesktopModel::GetButtonSprite(int x, int y) const noexcept
+fsweep::Sprite fsweep::DesktopModel::getButtonSprite(int x, int y) const noexcept
 {
   const auto& game_model = this->game_model.get();
-  if (x >= game_model.GetGameConfiguration().GetButtonsWide() ||
-      y >= game_model.GetGameConfiguration().GetButtonsTall())
+  if (x >= game_model.getGameConfiguration().getButtonsWide() ||
+      y >= game_model.getGameConfiguration().getButtonsTall())
   {
     return fsweep::Sprite::ButtonNone;
   }
-  const auto& button = game_model.GetButton(x, y);
+  const auto& button = game_model.getButton(x, y);
   auto button_position = fsweep::ButtonPosition(x, y);
-  if (game_model.GetGameState() == fsweep::GameState::None ||
-      game_model.GetGameState() == fsweep::GameState::Playing)
+  if (game_model.getGameState() == fsweep::GameState::None ||
+      game_model.getGameState() == fsweep::GameState::Playing)
   {
-    if (button.GetButtonState() != fsweep::ButtonState::Flagged &&
-        button.GetButtonState() != fsweep::ButtonState::Down && this->left_down &&
+    if (button.getButtonState() != fsweep::ButtonState::Flagged &&
+        button.getButtonState() != fsweep::ButtonState::Down && this->left_down &&
         this->hover_button_o.has_value())
     {
       const auto& hover_button = this->hover_button_o.value();
       if ((hover_button == button_position) ||
-          (this->right_down && hover_button.IsNear(button_position)))
+          (this->right_down && hover_button.isNear(button_position)))
       {
         if (fsweep::ButtonState() == fsweep::ButtonState::Questioned)
         {
@@ -233,30 +233,30 @@ fsweep::Sprite fsweep::DesktopModel::GetButtonSprite(int x, int y) const noexcep
         return fsweep::Sprite::ButtonDown;
       }
     }
-    else if (button.GetButtonState() == fsweep::ButtonState::Flagged)
+    else if (button.getButtonState() == fsweep::ButtonState::Flagged)
     {
       return fsweep::Sprite::ButtonFlag;
     }
-    else if (button.GetButtonState() == fsweep::ButtonState::Questioned)
+    else if (button.getButtonState() == fsweep::ButtonState::Questioned)
     {
       return fsweep::Sprite::ButtonQuestion;
     }
-    else if (button.GetButtonState() == fsweep::ButtonState::Down)
+    else if (button.getButtonState() == fsweep::ButtonState::Down)
     {
-      return fsweep::getDownButtonSprite(button.GetSurroundingBombs());
+      return fsweep::getDownButtonSprite(button.getSurroundingBombs());
     }
     else
     {
       return fsweep::Sprite::ButtonNone;
     }
   }
-  else  // if (model.GetGameState() == fsweep::GameState::Cool || model.GetGameState() ==
+  else  // if (model.getGameState() == fsweep::GameState::Cool || model.getGameState() ==
         // fsweep::GameState::Dead)
   {
-    if (button.GetButtonState() == fsweep::ButtonState::None ||
-        button.GetButtonState() == fsweep::ButtonState::Questioned)
+    if (button.getButtonState() == fsweep::ButtonState::None ||
+        button.getButtonState() == fsweep::ButtonState::Questioned)
     {
-      if (button.GetHasBomb())
+      if (button.getHasBomb())
       {
         return fsweep::Sprite::ButtonBomb;
       }
@@ -265,9 +265,9 @@ fsweep::Sprite fsweep::DesktopModel::GetButtonSprite(int x, int y) const noexcep
         return fsweep::Sprite::ButtonNone;
       }
     }
-    else if (button.GetButtonState() == fsweep::ButtonState::Flagged)
+    else if (button.getButtonState() == fsweep::ButtonState::Flagged)
     {
-      if (button.GetHasBomb())
+      if (button.getHasBomb())
       {
         return fsweep::Sprite::ButtonFlagHit;
       }
@@ -276,54 +276,54 @@ fsweep::Sprite fsweep::DesktopModel::GetButtonSprite(int x, int y) const noexcep
         return fsweep::Sprite::ButtonFlagMiss;
       }
     }
-    else if (button.GetButtonState() == fsweep::ButtonState::Down)
+    else if (button.getButtonState() == fsweep::ButtonState::Down)
     {
-      if (button.GetHasBomb())
+      if (button.getHasBomb())
       {
         return fsweep::Sprite::ButtonBombExplode;
       }
       else
       {
-        return fsweep::getDownButtonSprite(button.GetSurroundingBombs());
+        return fsweep::getDownButtonSprite(button.getSurroundingBombs());
       }
     }
   }
   return fsweep::Sprite::ButtonNone;
 }
 
-fsweep::Point fsweep::DesktopModel::GetFacePoint() const noexcept
+fsweep::Point fsweep::DesktopModel::getFacePoint() const noexcept
 {
-  return fsweep::Point((this->GetSize().x / 2) - (this->GetFaceDimension() / 2),
-                       this->GetBorderSize());
+  return fsweep::Point((this->getSize().x / 2) - (this->getFaceDimension() / 2),
+                       this->getBorderSize());
 }
 
-fsweep::Point fsweep::DesktopModel::GetButtonPoint(int x, int y) const noexcept
+fsweep::Point fsweep::DesktopModel::getButtonPoint(int x, int y) const noexcept
 {
-  return fsweep::Point(this->GetBorderSize() + (x * this->GetButtonDimension()),
-                       this->GetHeaderHeight() + (y * this->GetButtonDimension()));
+  return fsweep::Point(this->getBorderSize() + (x * this->getButtonDimension()),
+                       this->getHeaderHeight() + (y * this->getButtonDimension()));
 }
 
-fsweep::Point fsweep::DesktopModel::GetScorePoint(std::size_t digit) const noexcept
+fsweep::Point fsweep::DesktopModel::getScorePoint(std::size_t digit) const noexcept
 {
-  return fsweep::Point(this->GetBorderSize() + (this->GetLcdDigitWidth() * digit),
-                       this->GetBorderSize());
+  return fsweep::Point(this->getBorderSize() + (this->getLcdDigitWidth() * digit),
+                       this->getBorderSize());
 }
 
-fsweep::Point fsweep::DesktopModel::GetTimerPoint(std::size_t digit) const noexcept
+fsweep::Point fsweep::DesktopModel::getTimerPoint(std::size_t digit) const noexcept
 {
   return fsweep::Point(
-      this->GetSize().x - (this->GetBorderSize() + (this->GetLcdDigitWidth() * (3 - digit))),
-      this->GetBorderSize());
+      this->getSize().x - (this->getBorderSize() + (this->getLcdDigitWidth() * (3 - digit))),
+      this->getBorderSize());
 }
 
-fsweep::Point fsweep::DesktopModel::GetSize() const noexcept
+fsweep::Point fsweep::DesktopModel::getSize() const noexcept
 {
   const auto& game_model = this->game_model.get();
   return fsweep::Point(
-      (game_model.GetGameConfiguration().GetButtonsWide() *
+      (game_model.getGameConfiguration().getButtonsWide() *
        (this->pixel_scale * BUTTON_DIMENSION)) +
           ((this->pixel_scale * BORDER_SIZE) * 2),
-      (game_model.GetGameConfiguration().GetButtonsTall() *
+      (game_model.getGameConfiguration().getButtonsTall() *
        (this->pixel_scale * BUTTON_DIMENSION)) +
           ((this->pixel_scale * BORDER_SIZE) + (this->pixel_scale * HEADER_HEIGHT)));
 }
