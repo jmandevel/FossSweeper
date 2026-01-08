@@ -27,7 +27,7 @@ jobs:
         platform:
           - {
               Name: Windows VS2022 x64,
-              os: windows-2022,
+              os: windows-latest,
               cpack_generator: ZIP,
               package_extension: zip,
               cc: cl.exe,
@@ -36,16 +36,16 @@ jobs:
             }
           - {
               Name: Linux GCC x64,
-              os: ubuntu-22.04,
+              os: ubuntu-latest,
               cpack_generator: TGZ,
               package_extension: tar.gz,
-              cc: gcc-10,
-              cxx: g++-10,
+              cc: gcc,
+              cxx: g++,
               arch: "x64-linux",
             }
           - {
               Name: MacOS Clang x64,
-              os: macos-12,
+              os: macos-latest,
               cpack_generator: TGZ,
               package_extension: tar.gz,
               cc: clang,
@@ -59,7 +59,7 @@ jobs:
       CXX: ${{ matrix.platform.cxx }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           submodules: "recursive"
       - name: Create build enviornment
@@ -103,7 +103,7 @@ jobs:
         working-directory: ${{ github.workspace }}/build/
         run: cpack --config CPackConfig.cmake -G ${{ matrix.platform.cpack_generator }}
       - name: Release the archive
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           files: ${{ github.workspace }}/build/*.${{ matrix.platform.package_extension }}
           draft: true

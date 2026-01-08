@@ -27,28 +27,28 @@ jobs:
         platform:
           - {
               Name: Windows VS2022,
-              os: windows-2022,
+              os: windows-latest,
               cc: gcc,
               cxx: g++,
               arch: "x64-windows",
             }
           - {
               Name: Linux GCC,
-              os: ubuntu-22.04,
-              cc: gcc-10,
-              cxx: g++-10,
+              os: ubuntu-latest,
+              cc: gcc,
+              cxx: g++,
               arch: "x64-linux",
             }
           - {
               Name: Linux Clang,
-              os: ubuntu-22.04,
-              cc: clang-12,
-              cxx: clang++-12,
+              os: ubuntu-latest,
+              cc: clang,
+              cxx: clang++,
               arch: "x64-linux",
             }
           - {
               Name: MacOS Clang,
-              os: macos-12,
+              os: macos-latest,
               cc: clang,
               cxx: clang++,
               arch: "x64-osx",
@@ -60,7 +60,7 @@ jobs:
       CXX: ${{ matrix.platform.cxx }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           submodules: "recursive"
       - name: Update and install MacOS packages
@@ -101,7 +101,8 @@ jobs:
         run: ctest -C ${{ matrix.build_type }}
         continue-on-error: true
       - name: Process JUnit report
-        uses: mikepenz/action-junit-report@v2.4.3
+        uses: mikepenz/action-junit-report@v4
+        if: always()
         with:
           report_paths: "**/unittests.*.xml"
           require_tests: true
