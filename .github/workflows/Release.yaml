@@ -66,11 +66,6 @@ jobs:
         shell: bash
         working-directory: ${{ github.workspace }}
         run: cmake -E make_directory $GITHUB_WORKSPACE/build
-      - name: Update and install MacOS packages
-        if: ${{ runner.os == 'macOS'}}
-        run: |
-          softwareupdate --install -a
-          brew install ninja
       - name: Update and install Ubuntu packages
         if: ${{ runner.os == 'Linux' }}
         shell: bash
