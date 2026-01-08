@@ -1,0 +1,103 @@
+# SPDX-FileCopyrightText: 2022 Daniel Valcour <fosssweeper@gmail.com>
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+#
+# Copyright (c) 2022 Daniel Valcour
+#
+# This file is part of FossSweeper.
+#
+# FossSweeper is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# FossSweeper is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with FossSweeper. If not, see <https://www.gnu.org/licenses/>.
+#
+
+name: "Report a Bug"
+description: "Report a bug with the FossSweeper application."
+labels: ["bug"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        You can read more information about creating bug reports in our [Contributing Guidelines](https://github.com/jmandevel/FossSweeper/blob/main/CONTRIBUTING.md). While writing this report, remember to follow our [Code of Conduct](https://github.com/jmandevel/FossSweeper/blob/main/CODE_OF_CONDUCT.md). Many of the following fields accept Markdown formated text. You can read about Markdown syntax in the [GitHub Documentation](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+
+        Thank you for taking the time to fill out this bug report!
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps
+      description: What steps do you need to take to reproduce this problem?
+      placeholder: |
+        1. Do something
+        2. Do something else
+        3. The bug occurs
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behaviour
+    attributes:
+      label: Expected Behaviour
+      description: What was the behaviour that you expected?
+      placeholder: I expected that...
+    validations:
+      required: true
+  - type: textarea
+    id: observed-behaviour
+    attributes:
+      label: Observed Behaviour
+      description: What was the behaviour that you observed?
+      placeholder: I observed that...
+    validations:
+      required: true
+  - type: input
+    id: fosssweeper-version
+    attributes:
+      label: FossSweeper Version
+      description: What version of FossSweeper were you using when the bug occured? You can find the version number in the About dialog, which you can access from the help drop down menu. Click the "Copy Version" and paste it here.
+      placeholder: ex. 1.0.0
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: FossSweeper Hash
+      description: What is the hash of the FossSweeper build that you were using when the bug occured? You can find the hash in the About dialog along side the version. Click the "Copy Hash" button and paste it here.
+      placeholder: ex. \#91defeec
+    validations:
+      required: true
+  - type: input
+    id: operating-system
+    attributes:
+      label: Operating System
+      description: What operating system were you running FossSweeper on when the bug occured?
+      placeholder: ex. Windows 10, macOS Mojave, Linux Mint 21, etc
+    validations:
+      required: true
+  - type: textarea
+    id: linux-desktop
+    attributes:
+      label: Linux Details
+      description: If using Linux, please list your desktop, desktop theme, GTK version and GDK.
+      placeholder: |
+        Desktop: ex. Mate 1.26, GNOME 42, KDE Plasma 5, etc
+        Desktop theme: ex. Adwaita, Nordic, Macuntu, etc
+        GTK version: ex. 3.24.34
+        GDK: ex. Wayland, Xorg
+    validations:
+      required: false
+  - type: input
+    id: credits-name
+    attributes:
+      label: Credits Name
+      description: If you get added to the credits, what name do you want us to use? Leave this field blank if you don't want credit. Your name will be added along with your GitHub username.
+      placeholder: ex. John Doe
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/jmandevel/FossSweeper/blob/main/CODE_OF_CONDUCT.md).
+      options:
+        - label: I agree to follow this project's Code of Conduct.
+          required: true

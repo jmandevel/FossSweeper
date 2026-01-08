@@ -10,19 +10,19 @@ This file explains how to contribute to the FossSweeper project. For standards o
 
 ## How to Report a Bug
 
-Report bugs in the [issues board](https://www.github.com/Journeyman-dev/FossSweeper/issues). [Create a new issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/creating-an-issue) with the `Bug Report` template and fill out the form.
+Report bugs in the [issues board](https://www.github.com/jmandevel/FossSweeper/issues). [Create a new issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/creating-an-issue) with the `Bug Report` template and fill out the form.
 
 ## How to Suggest a Feature
 
-Suggest features in the [Ideas](https://www.github.com/Journeyman-dev/FossSweeper/discussions/categories/ideas) category of the discussions board. When it is deemed that an adequate discussion has been completed, a thread in the issues board may be created to request the implementation of the feature.
+Suggest features in the [Ideas](https://www.github.com/jmandevel/FossSweeper/discussions/categories/ideas) category of the discussions board. When it is deemed that an adequate discussion has been completed, a thread in the issues board may be created to request the implementation of the feature.
 
 ## How to Ask a Question
 
-Ask questions in the [Q&A](https://www.github.com/Journeyman-dev/FossSweeper/discussions/categories/q&a) category of the discussions board.
+Ask questions in the [Q&A](https://www.github.com/jmandevel/FossSweeper/discussions/categories/q&a) category of the discussions board.
 
 ## How to Contribute Code Changes
 
-Browse the [issues board](https://www.github.com/Journeyman-dev/FossSweeper/issues) to find an issue that interests you. If you want to work on an issue, say so by commenting in the issue thread. [Fork the dev branch](https://docs.github.com/en/get-started/quickstart/fork-a-repo#fork-an-example-repository) of the FossSweeper repository and [clone the fork](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) to your local machine. Initialize all git submodules within your local clone using the bash command `git submodule update --init --recursive` so you can build the project properly. [Commit your changes](https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/making-changes-in-a-branch/committing-and-reviewing-changes-to-your-project) locally and then [push them](https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/making-changes-in-a-branch/pushing-changes-to-github) to your forked repository. When you are ready, go ahead and [make a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests) in the [FossSweeper pull requests board](https://github.com/Journeyman-dev/FossSweeper/pulls).
+Browse the [issues board](https://www.github.com/jmandevel/FossSweeper/issues) to find an issue that interests you. If you want to work on an issue, say so by commenting in the issue thread. [Fork the dev branch](https://docs.github.com/en/get-started/quickstart/fork-a-repo#fork-an-example-repository) of the FossSweeper repository and [clone the fork](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) to your local machine. Initialize all git submodules within your local clone using the bash command `git submodule update --init --recursive` so you can build the project properly. [Commit your changes](https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/making-changes-in-a-branch/committing-and-reviewing-changes-to-your-project) locally and then [push them](https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/making-changes-in-a-branch/pushing-changes-to-github) to your forked repository. When you are ready, go ahead and [make a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests) in the [FossSweeper pull requests board](https://github.com/jmandevel/FossSweeper/pulls).
 
 Every time you push changes to GitHub, several tests will automatically run using [GitHub Actions](https://docs.github.com/en/actions). Before your pull request can be merged into FossSweeper, all of these tests must pass.
 

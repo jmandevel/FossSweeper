@@ -83,15 +83,15 @@ fsweep::AboutDialog::AboutDialog(wxWindow *parent)
   auto *const itch_sizer = new wxBoxSizer(wxHORIZONTAL);
   itch_sizer->Add(new wxStaticText(this, wxID_ANY, "Download Page: "));
   itch_sizer->Add(new wxHyperlinkCtrl(
-      this, wxID_ANY, "https://journeyman-dev.itch.io/FossSweeper",
-      "https://journeyman-dev.itch.io/FossSweeper"));
+      this, wxID_ANY, "https://jmandevel.itch.io/FossSweeper",
+      "https://jmandevel.itch.io/FossSweeper"));
   sizer->Add(itch_sizer, 0, wxALIGN_CENTER | wxALL, 5);
 
   auto *const source_sizer = new wxBoxSizer(wxHORIZONTAL);
   source_sizer->Add(new wxStaticText(this, wxID_ANY, _("Source Code: ")));
   source_sizer->Add(new wxHyperlinkCtrl(
-      this, wxID_ANY, "https://github.com/Journeyman-dev/FossSweeper",
-      "https://github.com/Journeyman-dev/FossSweeper"));
+      this, wxID_ANY, "https://github.com/jmandevel/FossSweeper",
+      "https://github.com/jmandevel/FossSweeper"));
   sizer->Add(source_sizer, 0, wxALIGN_CENTER | wxALL, 5);
 
   auto *const wxwidgets_sizer = new wxBoxSizer(wxHORIZONTAL);

@@ -12,7 +12,7 @@ FossSweeper is an open source mine avoidance game. The entire game is contained 
 
 ## How to Download
 
-You can get the latest version of FossSweeper from the [itch.io](https://journeyman-dev.itch.io/fosssweeper).
+You can get the latest version of FossSweeper from the [itch.io](https://jmandevel.itch.io/fosssweeper).
 
 ## How to Contribute
 
