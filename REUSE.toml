@@ -1,0 +1,5 @@
+version = 1
+SPDX-PackageName = "FossSweeper"
+SPDX-PackageSupplier = "Daniel Valcour <fosssweeper@gmail.com>"
+SPDX-PackageDownloadLocation = "https://github.com/Journeyman-dev/FossSweeper"
+annotations = []
