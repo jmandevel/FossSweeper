@@ -56,11 +56,17 @@ fosssweeper::GamePanel::GamePanel(fosssweeper::DesktopView &desktop_view, wxFram
     : wxPanel(parent, wxID_ANY), _desktopView(std::ref(desktop_view)),
       _timer(this) {
   Bind(wxEVT_TIMER, &GamePanel::onTimer, this, this->_timer.getTimer().GetId());
+  auto &desktop_model = this->_desktopView.get().getDesktopModel();
+  int pixel_scale = desktop_model.getPixelScale();
   for (std::size_t bitmap_i = 0;
        bitmap_i < static_cast<std::size_t>(fosssweeper::Sprite::Count); bitmap_i++) {
     this->_baseBitmaps[bitmap_i] =
         wxBitmap(fosssweeper::SPRITESHEET_XPM_DATA[bitmap_i]);
-    this->_scaledBitmaps[bitmap_i] = wxBitmap(this->_baseBitmaps[bitmap_i]);
+    const auto &base_bitmap = this->_baseBitmaps[bitmap_i];
+    auto image = base_bitmap.ConvertToImage();
+    image.Rescale(base_bitmap.GetWidth() * pixel_scale,
+                  base_bitmap.GetHeight() * pixel_scale);
+    this->_scaledBitmaps[bitmap_i] = wxBitmap(image);
   }
   this->SetSize(wxSize(width, height));
 }
