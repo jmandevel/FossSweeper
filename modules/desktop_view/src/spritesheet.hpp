@@ -22,18 +22,18 @@
  *
  */
 
-#ifndef FSWEEP_SPRITESHEET_HPP
-#define FSWEEP_SPRITESHEET_HPP
+#ifndef FOSSSWEEPER_SPRITESHEET_HPP
+#define FOSSSWEEPER_SPRITESHEET_HPP
 
 #include <array>
 #include <cstddef>
 #include <cstdint>
-#include <fsweep/LcdNumber.hpp>
-#include <fsweep/Sprite.hpp>
+#include <fosssweeper/lcd_number.hpp>
+#include <fosssweeper/sprite.hpp>
 
-namespace fsweep {
+namespace fosssweeper {
 extern const std::array<const char *const *,
-                        static_cast<std::size_t>(fsweep::Sprite::Count)>
+                        static_cast<std::size_t>(fosssweeper::Sprite::Count)>
     SPRITESHEET_XPM_DATA;
-} // namespace fsweep
+} // namespace fosssweeper
 #endif

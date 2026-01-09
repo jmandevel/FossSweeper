@@ -541,8 +541,8 @@ const char *const BORDER_LEFT_INTERSECTION_XPM_DATA[] = {
     "  ......", "  ......",     "  ....++",     "  ....++"};
 
 const std::array<const char *const *,
-                 static_cast<std::size_t>(fsweep::Sprite::Count)>
-    fsweep::SPRITESHEET_XPM_DATA = {BUTTON_NONE_XPM_DATA,
+                 static_cast<std::size_t>(fosssweeper::Sprite::Count)>
+    fosssweeper::SPRITESHEET_XPM_DATA = {BUTTON_NONE_XPM_DATA,
                                     BUTTON_DOWN_XPM_DATA,
                                     BUTTON_FLAG_XPM_DATA,
                                     BUTTON_QUESTION_XPM_DATA,

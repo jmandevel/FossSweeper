@@ -23,86 +23,86 @@
  */
 
 #include <catch2/catch_all.hpp>
-#include <fsweep/LcdNumber.hpp>
+#include <fosssweeper/lcd_number.hpp>
 
 SCENARIO("An LcdNumber is created") {
   GIVEN("An LcdNumber created with a value less than -99") {
-    const fsweep::LcdNumber lcd_number(-100);
+    const fosssweeper::LcdNumber lcd_number(-100);
 
     THEN("The digits should be - 9 and 9") {
-      CHECK(lcd_number[0] == fsweep::LcdDigit::Minus);
-      CHECK(lcd_number[1] == fsweep::LcdDigit::Nine);
-      CHECK(lcd_number[2] == fsweep::LcdDigit::Nine);
+      CHECK(lcd_number[0] == fosssweeper::LcdDigit::Minus);
+      CHECK(lcd_number[1] == fosssweeper::LcdDigit::Nine);
+      CHECK(lcd_number[2] == fosssweeper::LcdDigit::Nine);
     }
   }
 
   GIVEN("An LcdNumber with -50") {
-    const fsweep::LcdNumber lcd_number(-50);
+    const fosssweeper::LcdNumber lcd_number(-50);
 
     THEN("The digits should be - 5 and 0") {
-      CHECK(lcd_number[0] == fsweep::LcdDigit::Minus);
-      CHECK(lcd_number[1] == fsweep::LcdDigit::Five);
-      CHECK(lcd_number[2] == fsweep::LcdDigit::Zero);
+      CHECK(lcd_number[0] == fosssweeper::LcdDigit::Minus);
+      CHECK(lcd_number[1] == fosssweeper::LcdDigit::Five);
+      CHECK(lcd_number[2] == fosssweeper::LcdDigit::Zero);
     }
   }
 
   GIVEN("An LcdNumber with -4") {
-    const fsweep::LcdNumber lcd_number(-4);
+    const fosssweeper::LcdNumber lcd_number(-4);
 
     THEN("The digits should be None - and 4") {
-      CHECK(lcd_number[0] == fsweep::LcdDigit::None);
-      CHECK(lcd_number[1] == fsweep::LcdDigit::Minus);
-      CHECK(lcd_number[2] == fsweep::LcdDigit::Four);
+      CHECK(lcd_number[0] == fosssweeper::LcdDigit::None);
+      CHECK(lcd_number[1] == fosssweeper::LcdDigit::Minus);
+      CHECK(lcd_number[2] == fosssweeper::LcdDigit::Four);
     }
   }
 
   GIVEN("An LcdNumber with 0") {
-    const fsweep::LcdNumber lcd_number(0);
+    const fosssweeper::LcdNumber lcd_number(0);
 
     THEN("The digits should be None None and 0") {
-      CHECK(lcd_number[0] == fsweep::LcdDigit::None);
-      CHECK(lcd_number[1] == fsweep::LcdDigit::None);
-      CHECK(lcd_number[2] == fsweep::LcdDigit::Zero);
+      CHECK(lcd_number[0] == fosssweeper::LcdDigit::None);
+      CHECK(lcd_number[1] == fosssweeper::LcdDigit::None);
+      CHECK(lcd_number[2] == fosssweeper::LcdDigit::Zero);
     }
   }
 
   GIVEN("An LcdNumber with 7") {
-    const fsweep::LcdNumber lcd_number(7);
+    const fosssweeper::LcdNumber lcd_number(7);
 
     THEN("The digits should be None None and 7") {
-      CHECK(lcd_number[0] == fsweep::LcdDigit::None);
-      CHECK(lcd_number[1] == fsweep::LcdDigit::None);
-      CHECK(lcd_number[2] == fsweep::LcdDigit::Seven);
+      CHECK(lcd_number[0] == fosssweeper::LcdDigit::None);
+      CHECK(lcd_number[1] == fosssweeper::LcdDigit::None);
+      CHECK(lcd_number[2] == fosssweeper::LcdDigit::Seven);
     }
   }
 
   GIVEN("An LcdNumber with 78") {
-    const fsweep::LcdNumber lcd_number(78);
+    const fosssweeper::LcdNumber lcd_number(78);
 
     THEN("The digits should be None 7 and 8") {
-      CHECK(lcd_number[0] == fsweep::LcdDigit::None);
-      CHECK(lcd_number[1] == fsweep::LcdDigit::Seven);
-      CHECK(lcd_number[2] == fsweep::LcdDigit::Eight);
+      CHECK(lcd_number[0] == fosssweeper::LcdDigit::None);
+      CHECK(lcd_number[1] == fosssweeper::LcdDigit::Seven);
+      CHECK(lcd_number[2] == fosssweeper::LcdDigit::Eight);
     }
   }
 
   GIVEN("An LcdNumber with 356") {
-    const fsweep::LcdNumber lcd_number(356);
+    const fosssweeper::LcdNumber lcd_number(356);
 
     THEN("The digits should be 3 5 and 6") {
-      CHECK(lcd_number[0] == fsweep::LcdDigit::Three);
-      CHECK(lcd_number[1] == fsweep::LcdDigit::Five);
-      CHECK(lcd_number[2] == fsweep::LcdDigit::Six);
+      CHECK(lcd_number[0] == fosssweeper::LcdDigit::Three);
+      CHECK(lcd_number[1] == fosssweeper::LcdDigit::Five);
+      CHECK(lcd_number[2] == fosssweeper::LcdDigit::Six);
     }
   }
 
   GIVEN("An LcdNumber greater than 999") {
-    const fsweep::LcdNumber lcd_number(1000);
+    const fosssweeper::LcdNumber lcd_number(1000);
 
     THEN("The digits should be 9 9 and 9") {
-      CHECK(lcd_number[0] == fsweep::LcdDigit::Nine);
-      CHECK(lcd_number[1] == fsweep::LcdDigit::Nine);
-      CHECK(lcd_number[2] == fsweep::LcdDigit::Nine);
+      CHECK(lcd_number[0] == fosssweeper::LcdDigit::Nine);
+      CHECK(lcd_number[1] == fosssweeper::LcdDigit::Nine);
+      CHECK(lcd_number[2] == fosssweeper::LcdDigit::Nine);
     }
   }
 }

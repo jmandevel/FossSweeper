@@ -24,7 +24,7 @@
 
 #include "icon.hpp"
 
-const char *const fsweep::ICON_XPM_DATA[] = {
+const char *const fosssweeper::ICON_XPM_DATA[] = {
     "16 16 4 1",        " 	c None",    ".	c #000000",
     "+	c #2C5B18", "@	c #771E1E",     "                ",
     "                ", "       ...      ", "      .+++.     ",

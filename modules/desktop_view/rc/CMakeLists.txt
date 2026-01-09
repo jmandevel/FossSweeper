@@ -15,7 +15,7 @@
 # 
 
 if(WIN32)
-    target_sources(fsweep_desktop_view
+    target_sources(fosssweeper_desktop_view
         PRIVATE
             "fosssweeper.rc"
     )
@@ -24,7 +24,7 @@ elseif(APPLE)
         PROPERTIES
             MACOSX_PACKAGE_LOCATION "Resources"
     )
-    set_target_properties(fsweep_desktop_view PROPERTIES
+    set_target_properties(fosssweeper_desktop_view PROPERTIES
               MACOSX_BUNDLE_BUNDLE_NAME "FossSweeper"
               MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
               MACOSX_BUNDLE_INFO_STRING "An open source clone of a popular mine avoidance game."
@@ -33,16 +33,16 @@ elseif(APPLE)
               MACOSX_BUNDLE_ICON_FILE "fosssweeper.icns"
               MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/osxbundle.plist.in"
     )
-    target_sources(fsweep_desktop_view
+    target_sources(fosssweeper_desktop_view
         PRIVATE
             "fosssweeper.icns"
     )
 elseif(UNIX)
     configure_file("${CMAKE_CURRENT_SOURCE_DIR}/fosssweeper.desktop.in" "${CMAKE_CURRENT_SOURCE_DIR}/fosssweeper.desktop")
-        target_sources(fsweep_desktop_view
+        target_sources(fosssweeper_desktop_view
         PRIVATE
             "fosssweeper.desktop"
     )
 else()
-    message(FATAL_ERROR "Unsupported platform for fsweep::desktop_view.")
+    message(FATAL_ERROR "Unsupported platform for fosssweeper::desktop_view.")
 endif()

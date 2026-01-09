@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef FSWEEP_WX_INCLUDE_HPP
-#define FSWEEP_WX_INCLUDE_HPP
+#ifndef FOSSSWEEPER_WX_INCLUDE_HPP
+#define FOSSSWEEPER_WX_INCLUDE_HPP
 
 #include <wx/wxprec.h>
 

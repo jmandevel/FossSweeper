@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU General Public License along with FossSweeper. If not, see <https://www.gnu.org/licenses/>.
 # 
 
-target_sources(fsweep_generated
+target_sources(fosssweeper_generated
     PRIVATE
         "credits.cpp"
         "license.cpp"

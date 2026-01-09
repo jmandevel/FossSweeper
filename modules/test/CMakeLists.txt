@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU General Public License along with FossSweeper. If not, see <https://www.gnu.org/licenses/>.
 # 
 
-if(NOT FSWEEP_MONOLITHIC)
+if(NOT FOSSSWEEPER_MONOLITHIC)
     find_package(Catch2 CONFIG REQUIRED)
 else()
     Include(FetchContent)
@@ -22,33 +22,33 @@ else()
     FetchContent_Declare(
       Catch2
       GIT_REPOSITORY https://github.com/catchorg/Catch2.git
-      GIT_TAG        v3.1.0
+      GIT_TAG        v3.12.0
     )
 
     FetchContent_MakeAvailable(Catch2)
 endif()
-add_executable(fsweep_test_auto "")
-target_include_directories(fsweep_test_auto
+add_executable(fosssweeper_test_auto "")
+target_include_directories(fosssweeper_test_auto
     PRIVATE
         "${CMAKE_CURRENT_SOURCE_DIR}/src"
 )
 add_subdirectory(src)
-target_link_libraries(fsweep_test_auto
+target_link_libraries(fosssweeper_test_auto
     PRIVATE
         Catch2::Catch2WithMain
-        fsweep::generated
-        fsweep::model
+        fosssweeper::generated
+        fosssweeper::model
 )
-set_target_properties(fsweep_test_auto
+set_target_properties(fosssweeper_test_auto
     PROPERTIES
-    OUTPUT_NAME "fsweep tests"
-    CXX_STANDARD ${FSWEEP_CXX_STANDARD}
+    OUTPUT_NAME "fosssweeper tests"
+    CXX_STANDARD ${FOSSSWEEPER_CXX_STANDARD}
     CXX_STANDARD_REQUIRED TRUE
 )
 include(CTest)
 include(Catch)
 catch_discover_tests(
-  fsweep_test_auto
+  fosssweeper_test_auto
   TEST_PREFIX "unittests."
   REPORTER junit
   OUTPUT_DIR ${CMAKE_BINARY_DIR}

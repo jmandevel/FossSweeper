@@ -16,4 +16,4 @@ You can get the latest version of FossSweeper from the [itch.io](https://jmandev
 
 ## How to Contribute
 
-FossSweeper is a community developed project released under the GNU General Public License 3. You can contribute to its development by reporting bugs, requesting features, or submitting pull requests. Please see our [Contributing Guidelines](CONTRIBUTING.md) for more information about how you can take part.
+FossSweeper is developed project released under the GNU General Public License 3. You can contribute to its development by reporting bugs, requesting features, or submitting pull requests. Please see our [Contributing Guidelines](CONTRIBUTING.md).

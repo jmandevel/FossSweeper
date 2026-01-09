@@ -14,52 +14,52 @@
 # You should have received a copy of the GNU General Public License along with FossSweeper. If not, see <https://www.gnu.org/licenses/>.
 # 
 
-if(NOT FSWEEP_MONOLITHIC)
+if(NOT FOSSSWEEPER_MONOLITHIC)
     find_package(wxWidgets CONFIG REQUIRED)
 else()
     Include(FetchContent)
     FetchContent_Declare(
       wxWidgets
       GIT_REPOSITORY https://github.com/wxWidgets/wxWidgets
-      GIT_TAG        v3.2.1
+      GIT_TAG        v3.3.1
     )
     set(wxBUILD_SHARED FALSE)
     set(wxBUILD_INSTALL FALSE)
     FetchContent_MakeAvailable(wxWidgets)
 endif()
-add_executable(fsweep_desktop_view WIN32 MACOSX_BUNDLE "")
-target_include_directories(fsweep_desktop_view
+add_executable(fosssweeper_desktop_view WIN32 MACOSX_BUNDLE "")
+target_include_directories(fosssweeper_desktop_view
     PRIVATE
         "${CMAKE_CURRENT_SOURCE_DIR}/src/"
-        "${FSWEEP_CMAKE_SOURCE_DIR}/extern/wxWidgets/include"
+        "${FOSSSWEEPER_CMAKE_SOURCE_DIR}/extern/wxWidgets/include"
 )
 add_subdirectory(src)
 add_subdirectory(rc)
-target_link_libraries(fsweep_desktop_view
+target_link_libraries(fosssweeper_desktop_view
     PUBLIC
-        fsweep::generated
-        fsweep::model
+        fosssweeper::generated
+        fosssweeper::model
         wx::net
         wx::core
         wx::base
 )
-set_target_properties(fsweep_desktop_view
+set_target_properties(fosssweeper_desktop_view
     PROPERTIES
     OUTPUT_NAME "FossSweeper"
-    CXX_STANDARD ${FSWEEP_CXX_STANDARD}
+    CXX_STANDARD ${FOSSSWEEPER_CXX_STANDARD}
     CXX_STANDARD_REQUIRED TRUE
 )
-if(FSWEEP_INSTALL_DESKTOP)
+if(FOSSSWEEPER_INSTALL_DESKTOP)
     include(GNUInstallDirs)
-    install(TARGETS fsweep_desktop_view DESTINATION ${CMAKE_INSTALL_BINDIR})
-    install(FILES "${FSWEEP_CMAKE_SOURCE_DIR}/COPYING" DESTINATION ${CMAKE_INSTALL_BINDIR})
+    install(TARGETS fosssweeper_desktop_view DESTINATION ${CMAKE_INSTALL_BINDIR})
+    install(FILES "${FOSSSWEEPER_CMAKE_SOURCE_DIR}/COPYING" DESTINATION ${CMAKE_INSTALL_BINDIR})
     if(UNIX AND NOT APPLE)
       install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/rc/fosssweeper.png" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/16x16/apps")
       install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/rc/fosssweeper.desktop" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/applications")
     elseif(APPLE)
         string(APPEND CMAKE_INSTALL_PREFIX "FossSweeper.app/Contents")
     endif()
-    set(CPACK_RESOURCE_FILE_LICENSE "${FSWEEP_CMAKE_SOURCE_DIR}/COPYING")
+    set(CPACK_RESOURCE_FILE_LICENSE "${FOSSSWEEPER_CMAKE_SOURCE_DIR}/COPYING")
     set(CPACK_STRIP_FILES TRUE)
     set(CPACK_THREADS 0)
     include(CPack)

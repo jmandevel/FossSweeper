@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU General Public License along with FossSweeper. If not, see <https://www.gnu.org/licenses/>.
 # 
 
-target_sources(fsweep_test_auto
+target_sources(fosssweeper_test_auto
     PRIVATE
         "button_position_test.cpp"
         "button_test.cpp"

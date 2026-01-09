@@ -23,45 +23,45 @@
  */
 
 #include <catch2/catch_all.hpp>
-#include <fsweep/GameModel.hpp>
+#include <fosssweeper/game_model.hpp>
 
 SCENARIO("A GameModel is constructed with its default constructor") {
   GIVEN("A default constructed GameModel") {
-    const fsweep::GameModel game_model;
+    const fosssweeper::GameModel game_model;
 
     THEN("The questions are not enabled") {
-      CHECK(game_model.GetQuestionsEnabled() == false);
+      CHECK(game_model.getQuestionsEnabled() == false);
     }
 
-    THEN("The flag count is 0") { CHECK(game_model.GetFlagCount() == 0); }
+    THEN("The flag count is 0") { CHECK(game_model.getFlagCount() == 0); }
 
     THEN("There are bomb count bombs left") {
-      CHECK(game_model.GetBombsLeft() ==
-            fsweep::GameConfiguration::BEGINNER_BOMB_COUNT);
+      CHECK(game_model.getBombsLeft() ==
+            fosssweeper::GameConfiguration::BEGINNER_BOMB_COUNT);
     }
 
     THEN("There is a beginner difficulty amount of buttons left") {
-      CHECK(game_model.GetButtonsLeft() ==
-            (fsweep::GameConfiguration::BEGINNER_BUTTONS_WIDE *
-             fsweep::GameConfiguration::BEGINNER_BUTTONS_TALL) -
-                fsweep::GameConfiguration::BEGINNER_BOMB_COUNT);
+      CHECK(game_model.getButtonsLeft() ==
+            (fosssweeper::GameConfiguration::BEGINNER_BUTTONS_WIDE *
+             fosssweeper::GameConfiguration::BEGINNER_BUTTONS_TALL) -
+                fosssweeper::GameConfiguration::BEGINNER_BOMB_COUNT);
     }
 
     THEN("The GameState is None") {
-      CHECK(game_model.GetGameState() == fsweep::GameState::None);
+      CHECK(game_model.getGameState() == fosssweeper::GameState::None);
     }
 
     THEN("The GameDifficulty is Default (Beginner)") {
-      CHECK(game_model.GetGameConfiguration().GetGameDifficulty() ==
-            fsweep::GameDifficulty::Default);
+      CHECK(game_model.getGameConfiguration().getGameDifficulty() ==
+            fosssweeper::GameDifficulty::Default);
     }
   }
 }
 
 SCENARIO("A GameModel is constructed with its overloaded constructor") {
   GIVEN("A GameModel constructed with default properties") {
-    const fsweep::GameModel game_model(fsweep::GameConfiguration(8, 8, 2), true,
-                                       fsweep::GameState::Cool, 15,
+    const fosssweeper::GameModel game_model(fosssweeper::GameConfiguration(8, 8, 2), true,
+                                       fosssweeper::GameState::Cool, 15,
                                        "dbxfcqr."
                                        "........"
                                        "........"
@@ -72,85 +72,85 @@ SCENARIO("A GameModel is constructed with its overloaded constructor") {
                                        "........");
 
     THEN("The GameDifficulty is Custom (8x8) 2b") {
-      CHECK(game_model.GetGameConfiguration().GetGameDifficulty() ==
-            fsweep::GameDifficulty::Custom);
-      CHECK(game_model.GetGameConfiguration().GetButtonsWide() == 8);
-      CHECK(game_model.GetGameConfiguration().GetButtonsTall() == 8);
-      CHECK(game_model.GetGameConfiguration().GetBombCount() == 2);
+      CHECK(game_model.getGameConfiguration().getGameDifficulty() ==
+            fosssweeper::GameDifficulty::Custom);
+      CHECK(game_model.getGameConfiguration().getButtonsWide() == 8);
+      CHECK(game_model.getGameConfiguration().getButtonsTall() == 8);
+      CHECK(game_model.getGameConfiguration().getBombCount() == 2);
     }
 
     THEN("The amount of Button objects in the buttons vector is correct") {
-      CHECK(game_model.GetButtons().size() == 8 * 8);
+      CHECK(game_model.getButtons().size() == 8 * 8);
     }
 
     THEN("The questions are enabled") {
-      CHECK(game_model.GetQuestionsEnabled() == true);
+      CHECK(game_model.getQuestionsEnabled() == true);
     }
 
     THEN("The GameState is Cool") {
-      CHECK(game_model.GetGameState() == fsweep::GameState::Cool);
+      CHECK(game_model.getGameState() == fosssweeper::GameState::Cool);
     }
 
-    THEN("The game time is 15") { CHECK(game_model.GetGameTime() == 15); }
+    THEN("The game time is 15") { CHECK(game_model.getGameTime() == 15); }
 
     THEN("The Button at (0, 0) is Down state with no bomb") {
-      CHECK(game_model.GetButton(0, 0).GetButtonState() ==
-            fsweep::ButtonState::Down);
-      CHECK(game_model.GetButton(0, 0).GetHasBomb() == false);
+      CHECK(game_model.getButton(0, 0).getButtonState() ==
+            fosssweeper::ButtonState::Down);
+      CHECK(game_model.getButton(0, 0).getHasBomb() == false);
     }
 
     THEN("The Button at (1, 0) is None state with a bomb") {
-      CHECK(game_model.GetButton(1, 0).GetButtonState() ==
-            fsweep::ButtonState::None);
-      CHECK(game_model.GetButton(1, 0).GetHasBomb() == true);
+      CHECK(game_model.getButton(1, 0).getButtonState() ==
+            fosssweeper::ButtonState::None);
+      CHECK(game_model.getButton(1, 0).getHasBomb() == true);
     }
 
     THEN("The Button at (2, 0) is Down state with a bomb") {
-      CHECK(game_model.GetButton(2, 0).GetButtonState() ==
-            fsweep::ButtonState::Down);
-      CHECK(game_model.GetButton(2, 0).GetHasBomb() == true);
+      CHECK(game_model.getButton(2, 0).getButtonState() ==
+            fosssweeper::ButtonState::Down);
+      CHECK(game_model.getButton(2, 0).getHasBomb() == true);
     }
 
     THEN("The Button at (3, 0) is Flagged state with no bomb") {
-      CHECK(game_model.GetButton(3, 0).GetButtonState() ==
-            fsweep::ButtonState::Flagged);
-      CHECK(game_model.GetButton(3, 0).GetHasBomb() == false);
+      CHECK(game_model.getButton(3, 0).getButtonState() ==
+            fosssweeper::ButtonState::Flagged);
+      CHECK(game_model.getButton(3, 0).getHasBomb() == false);
     }
 
     THEN("The Button at (4, 0) is Flagged state with a bomb") {
-      CHECK(game_model.GetButton(4, 0).GetButtonState() ==
-            fsweep::ButtonState::Flagged);
-      CHECK(game_model.GetButton(4, 0).GetHasBomb() == true);
+      CHECK(game_model.getButton(4, 0).getButtonState() ==
+            fosssweeper::ButtonState::Flagged);
+      CHECK(game_model.getButton(4, 0).getHasBomb() == true);
     }
 
     THEN("The Button at (5, 0) is Questioned state with no bomb") {
-      CHECK(game_model.GetButton(5, 0).GetButtonState() ==
-            fsweep::ButtonState::Questioned);
-      CHECK(game_model.GetButton(5, 0).GetHasBomb() == false);
+      CHECK(game_model.getButton(5, 0).getButtonState() ==
+            fosssweeper::ButtonState::Questioned);
+      CHECK(game_model.getButton(5, 0).getHasBomb() == false);
     }
 
     THEN("The Button at (6, 0) is Questioned state with a bomb") {
-      CHECK(game_model.GetButton(6, 0).GetButtonState() ==
-            fsweep::ButtonState::Questioned);
-      CHECK(game_model.GetButton(6, 0).GetHasBomb() == true);
+      CHECK(game_model.getButton(6, 0).getButtonState() ==
+            fosssweeper::ButtonState::Questioned);
+      CHECK(game_model.getButton(6, 0).getHasBomb() == true);
     }
 
     THEN("The Button at (7, 0) is None state with no bomb") {
-      CHECK(game_model.GetButton(7, 0).GetButtonState() ==
-            fsweep::ButtonState::None);
-      CHECK(game_model.GetButton(7, 0).GetHasBomb() == false);
+      CHECK(game_model.getButton(7, 0).getButtonState() ==
+            fosssweeper::ButtonState::None);
+      CHECK(game_model.getButton(7, 0).getHasBomb() == false);
     }
 
-    THEN("The flag count is 2") { CHECK(game_model.GetFlagCount() == 2); }
+    THEN("The flag count is 2") { CHECK(game_model.getFlagCount() == 2); }
   }
 }
 
 SCENARIO(
     "A new game is started in a GameModel without a configuration change") {
   GIVEN("A GameModel in dead game state with enabled questions") {
-    fsweep::GameModel game_model(
-        fsweep::GameConfiguration(fsweep::GameDifficulty::Beginner), true,
-        fsweep::GameState::Dead, 30,
+    fosssweeper::GameModel game_model(
+        fosssweeper::GameConfiguration(fosssweeper::GameDifficulty::Beginner), true,
+        fosssweeper::GameState::Dead, 30,
         "dbxfcqr."
         "........"
         "........"
@@ -161,54 +161,54 @@ SCENARIO(
         "........");
 
     WHEN("A new game is started without a configuration change") {
-      game_model.NewGame();
+      game_model.newGame();
 
       THEN("The GameState is None") {
-        CHECK(game_model.GetGameState() == fsweep::GameState::None);
+        CHECK(game_model.getGameState() == fosssweeper::GameState::None);
       }
 
       THEN("Questions are still enabled") {
-        CHECK(game_model.GetQuestionsEnabled() == true);
+        CHECK(game_model.getQuestionsEnabled() == true);
       }
 
       THEN("The GameConfiguration has beginner difficulty") {
-        CHECK(game_model.GetGameConfiguration().GetGameDifficulty() ==
-              fsweep::GameDifficulty::Beginner);
-        CHECK(game_model.GetGameConfiguration().GetButtonsWide() ==
-              fsweep::GameConfiguration::BEGINNER_BUTTONS_WIDE);
-        CHECK(game_model.GetGameConfiguration().GetButtonsTall() ==
-              fsweep::GameConfiguration::BEGINNER_BUTTONS_TALL);
-        CHECK(game_model.GetGameConfiguration().GetBombCount() ==
-              fsweep::GameConfiguration::BEGINNER_BOMB_COUNT);
+        CHECK(game_model.getGameConfiguration().getGameDifficulty() ==
+              fosssweeper::GameDifficulty::Beginner);
+        CHECK(game_model.getGameConfiguration().getButtonsWide() ==
+              fosssweeper::GameConfiguration::BEGINNER_BUTTONS_WIDE);
+        CHECK(game_model.getGameConfiguration().getButtonsTall() ==
+              fosssweeper::GameConfiguration::BEGINNER_BUTTONS_TALL);
+        CHECK(game_model.getGameConfiguration().getBombCount() ==
+              fosssweeper::GameConfiguration::BEGINNER_BOMB_COUNT);
       }
 
-      THEN("The timer has 0") { CHECK(game_model.GetGameTime() == 0); }
+      THEN("The timer has 0") { CHECK(game_model.getGameTime() == 0); }
 
       THEN("The Button objects are all default constructed") {
-        CHECK(game_model.GetButton(0, 0).GetButtonState() ==
-              fsweep::ButtonState::None);
-        CHECK(game_model.GetButton(0, 0).GetHasBomb() == false);
-        CHECK(game_model.GetButton(1, 0).GetButtonState() ==
-              fsweep::ButtonState::None);
-        CHECK(game_model.GetButton(1, 0).GetHasBomb() == false);
-        CHECK(game_model.GetButton(2, 0).GetButtonState() ==
-              fsweep::ButtonState::None);
-        CHECK(game_model.GetButton(2, 0).GetHasBomb() == false);
-        CHECK(game_model.GetButton(3, 0).GetButtonState() ==
-              fsweep::ButtonState::None);
-        CHECK(game_model.GetButton(3, 0).GetHasBomb() == false);
-        CHECK(game_model.GetButton(4, 0).GetButtonState() ==
-              fsweep::ButtonState::None);
-        CHECK(game_model.GetButton(4, 0).GetHasBomb() == false);
-        CHECK(game_model.GetButton(5, 0).GetButtonState() ==
-              fsweep::ButtonState::None);
-        CHECK(game_model.GetButton(5, 0).GetHasBomb() == false);
-        CHECK(game_model.GetButton(6, 0).GetButtonState() ==
-              fsweep::ButtonState::None);
-        CHECK(game_model.GetButton(6, 0).GetHasBomb() == false);
-        CHECK(game_model.GetButton(7, 0).GetButtonState() ==
-              fsweep::ButtonState::None);
-        CHECK(game_model.GetButton(7, 0).GetHasBomb() == false);
+        CHECK(game_model.getButton(0, 0).getButtonState() ==
+              fosssweeper::ButtonState::None);
+        CHECK(game_model.getButton(0, 0).getHasBomb() == false);
+        CHECK(game_model.getButton(1, 0).getButtonState() ==
+              fosssweeper::ButtonState::None);
+        CHECK(game_model.getButton(1, 0).getHasBomb() == false);
+        CHECK(game_model.getButton(2, 0).getButtonState() ==
+              fosssweeper::ButtonState::None);
+        CHECK(game_model.getButton(2, 0).getHasBomb() == false);
+        CHECK(game_model.getButton(3, 0).getButtonState() ==
+              fosssweeper::ButtonState::None);
+        CHECK(game_model.getButton(3, 0).getHasBomb() == false);
+        CHECK(game_model.getButton(4, 0).getButtonState() ==
+              fosssweeper::ButtonState::None);
+        CHECK(game_model.getButton(4, 0).getHasBomb() == false);
+        CHECK(game_model.getButton(5, 0).getButtonState() ==
+              fosssweeper::ButtonState::None);
+        CHECK(game_model.getButton(5, 0).getHasBomb() == false);
+        CHECK(game_model.getButton(6, 0).getButtonState() ==
+              fosssweeper::ButtonState::None);
+        CHECK(game_model.getButton(6, 0).getHasBomb() == false);
+        CHECK(game_model.getButton(7, 0).getButtonState() ==
+              fosssweeper::ButtonState::None);
+        CHECK(game_model.getButton(7, 0).getHasBomb() == false);
       }
     }
   }
@@ -216,35 +216,35 @@ SCENARIO(
 
 SCENARIO("A new game is started in a GameModel with a configuration change") {
   GIVEN("A GameModel with beginner difficulty") {
-    fsweep::GameModel game_model;
+    fosssweeper::GameModel game_model;
 
     WHEN("A new game is started with intermediate difficulty") {
-      game_model.NewGame(
-          fsweep::GameConfiguration(fsweep::GameDifficulty::Intermediate));
+      game_model.newGame(
+          fosssweeper::GameConfiguration(fosssweeper::GameDifficulty::Intermediate));
 
       THEN("The new game is intermediate difficulty") {
-        CHECK(game_model.GetGameConfiguration().GetGameDifficulty() ==
-              fsweep::GameDifficulty::Intermediate);
+        CHECK(game_model.getGameConfiguration().getGameDifficulty() ==
+              fosssweeper::GameDifficulty::Intermediate);
       }
 
       THEN("The amount of Button objects in the buttons vector the amount for "
            "intermediate "
            "difficulty") {
-        CHECK(game_model.GetButtons().size() ==
-              fsweep::GameConfiguration::INTERMEDIATE_BUTTONS_WIDE *
-                  fsweep::GameConfiguration::INTERMEDIATE_BUTTONS_TALL);
+        CHECK(game_model.getButtons().size() ==
+              fosssweeper::GameConfiguration::INTERMEDIATE_BUTTONS_WIDE *
+                  fosssweeper::GameConfiguration::INTERMEDIATE_BUTTONS_TALL);
       }
 
       THEN("The GameState is None") {
-        CHECK(game_model.GetGameState() == fsweep::GameState::None);
+        CHECK(game_model.getGameState() == fosssweeper::GameState::None);
       }
     }
   }
 
   GIVEN("A GameModel constructed with one button pressed in playing state") {
-    fsweep::GameModel game_model(
-        fsweep::GameConfiguration(fsweep::GameDifficulty::Beginner), false,
-        fsweep::GameState::Playing, 55,
+    fosssweeper::GameModel game_model(
+        fosssweeper::GameConfiguration(fosssweeper::GameDifficulty::Beginner), false,
+        fosssweeper::GameState::Playing, 55,
         "db......"
         "bb......"
         ".b....b."
@@ -255,24 +255,24 @@ SCENARIO("A new game is started in a GameModel with a configuration change") {
         "........");
 
     WHEN("A new game is started with intermediate difficulty") {
-      game_model.NewGame(
-          fsweep::GameConfiguration(fsweep::GameDifficulty::Intermediate));
+      game_model.newGame(
+          fosssweeper::GameConfiguration(fosssweeper::GameDifficulty::Intermediate));
 
       THEN("The new game is intermediate difficulty") {
-        CHECK(game_model.GetGameConfiguration().GetGameDifficulty() ==
-              fsweep::GameDifficulty::Intermediate);
+        CHECK(game_model.getGameConfiguration().getGameDifficulty() ==
+              fosssweeper::GameDifficulty::Intermediate);
       }
 
       THEN("The amount of Button objects in the buttons vector the amount for "
            "intermediate "
            "difficulty") {
-        CHECK(game_model.GetButtons().size() ==
-              fsweep::GameConfiguration::INTERMEDIATE_BUTTONS_WIDE *
-                  fsweep::GameConfiguration::INTERMEDIATE_BUTTONS_TALL);
+        CHECK(game_model.getButtons().size() ==
+              fosssweeper::GameConfiguration::INTERMEDIATE_BUTTONS_WIDE *
+                  fosssweeper::GameConfiguration::INTERMEDIATE_BUTTONS_TALL);
       }
 
       THEN("The GameState is None") {
-        CHECK(game_model.GetGameState() == fsweep::GameState::None);
+        CHECK(game_model.getGameState() == fosssweeper::GameState::None);
       }
     }
   }
@@ -280,40 +280,40 @@ SCENARIO("A new game is started in a GameModel with a configuration change") {
 
 SCENARIO("A Button of a GameModel is clicked") {
   GIVEN("A default constructed GameModel") {
-    fsweep::GameModel game_model;
+    fosssweeper::GameModel game_model;
 
     WHEN("A Button is clicked") {
-      game_model.ClickButton(6, 6);
+      game_model.clickButton(6, 6);
 
       THEN("The Button is Down") {
-        CHECK(game_model.GetButton(6, 6).GetButtonState() ==
-              fsweep::ButtonState::Down);
+        CHECK(game_model.getButton(6, 6).getButtonState() ==
+              fosssweeper::ButtonState::Down);
       }
 
       THEN("The GameState is Playing") {
-        CHECK(game_model.GetGameState() == fsweep::GameState::Playing);
+        CHECK(game_model.getGameState() == fosssweeper::GameState::Playing);
       }
 
       THEN("The GameModel has the correct amount of bombs") {
         int bomb_count = 0;
-        for (auto &button : game_model.GetButtons()) {
-          if (button.GetHasBomb() == true) {
+        for (auto &button : game_model.getButtons()) {
+          if (button.getHasBomb() == true) {
             bomb_count++;
           }
         }
-        CHECK(bomb_count == fsweep::GameConfiguration::BEGINNER_BOMB_COUNT);
+        CHECK(bomb_count == fosssweeper::GameConfiguration::BEGINNER_BOMB_COUNT);
       }
 
       THEN("The clicked button has no bombs") {
-        CHECK(game_model.GetButton(6, 6).GetHasBomb() == false);
+        CHECK(game_model.getButton(6, 6).getHasBomb() == false);
       }
     }
   }
 
   GIVEN("A GameModel is in playing state") {
-    fsweep::GameModel game_model(
-        fsweep::GameConfiguration(fsweep::GameDifficulty::Beginner), false,
-        fsweep::GameState::Playing, 0,
+    fosssweeper::GameModel game_model(
+        fosssweeper::GameConfiguration(fosssweeper::GameDifficulty::Beginner), false,
+        fosssweeper::GameState::Playing, 0,
         "b......."
         "bb......"
         "......b."
@@ -324,18 +324,18 @@ SCENARIO("A Button of a GameModel is clicked") {
         "......bd");
 
     WHEN("A bombed Button is clicked") {
-      game_model.ClickButton(0, 0);
+      game_model.clickButton(0, 0);
 
       THEN("The GameState is Dead") {
-        CHECK(game_model.GetGameState() == fsweep::GameState::Dead);
+        CHECK(game_model.getGameState() == fosssweeper::GameState::Dead);
       }
     }
   }
 
   GIVEN("A GameModel in dead state") {
-    fsweep::GameModel game_model(
-        fsweep::GameConfiguration(fsweep::GameDifficulty::Beginner), false,
-        fsweep::GameState::Dead, 0,
+    fosssweeper::GameModel game_model(
+        fosssweeper::GameConfiguration(fosssweeper::GameDifficulty::Beginner), false,
+        fosssweeper::GameState::Dead, 0,
         "x......."
         "bb......"
         "......b."
@@ -346,19 +346,19 @@ SCENARIO("A Button of a GameModel is clicked") {
         "......bd");
 
     WHEN("A Button with None state is clicked") {
-      game_model.ClickButton(5, 5);
+      game_model.clickButton(5, 5);
 
       THEN("The Button is not down") {
-        CHECK(game_model.GetButton(5, 5).GetButtonState() ==
-              fsweep::ButtonState::None);
+        CHECK(game_model.getButton(5, 5).getButtonState() ==
+              fosssweeper::ButtonState::None);
       }
     }
   }
 
   GIVEN("A GameModel in cool state") {
-    fsweep::GameModel game_model(
-        fsweep::GameConfiguration(fsweep::GameDifficulty::Beginner), false,
-        fsweep::GameState::Cool, 0,
+    fosssweeper::GameModel game_model(
+        fosssweeper::GameConfiguration(fosssweeper::GameDifficulty::Beginner), false,
+        fosssweeper::GameState::Cool, 0,
         "bddddddd"
         "cbdddddd"
         "ddddddbd"
@@ -369,28 +369,28 @@ SCENARIO("A Button of a GameModel is clicked") {
         "ddddddbd");
 
     WHEN("A bombed Button is clicked") {
-      game_model.ClickButton(0, 0);
+      game_model.clickButton(0, 0);
 
       THEN("The Button is not down") {
-        CHECK(game_model.GetButton(0, 0).GetButtonState() ==
-              fsweep::ButtonState::None);
+        CHECK(game_model.getButton(0, 0).getButtonState() ==
+              fosssweeper::ButtonState::None);
       }
     }
 
     WHEN("A flagged Button is clicked") {
-      game_model.ClickButton(0, 1);
+      game_model.clickButton(0, 1);
 
       THEN("The Button is still flagged and not down") {
-        CHECK(game_model.GetButton(0, 1).GetButtonState() ==
-              fsweep::ButtonState::Flagged);
+        CHECK(game_model.getButton(0, 1).getButtonState() ==
+              fosssweeper::ButtonState::Flagged);
       }
     }
   }
 
   GIVEN("A GameModel in playing state)") {
-    fsweep::GameModel game_model(
-        fsweep::GameConfiguration(fsweep::GameDifficulty::Beginner), false,
-        fsweep::GameState::Playing, 0,
+    fosssweeper::GameModel game_model(
+        fosssweeper::GameConfiguration(fosssweeper::GameDifficulty::Beginner), false,
+        fosssweeper::GameState::Playing, 0,
         "bf......"
         "bb......"
         "......b."
@@ -401,19 +401,19 @@ SCENARIO("A Button of a GameModel is clicked") {
         "......bd");
 
     WHEN("A flagged Button is clicked") {
-      game_model.ClickButton(1, 0);
+      game_model.clickButton(1, 0);
 
       THEN("The Button is not down and still flagged") {
-        CHECK(game_model.GetButton(1, 0).GetButtonState() ==
-              fsweep::ButtonState::Flagged);
+        CHECK(game_model.getButton(1, 0).getButtonState() ==
+              fosssweeper::ButtonState::Flagged);
       }
     }
   }
 
   GIVEN("A GameModel in playing state") {
-    fsweep::GameModel game_model(
-        fsweep::GameConfiguration(fsweep::GameDifficulty::Beginner), true,
-        fsweep::GameState::Playing, 0,
+    fosssweeper::GameModel game_model(
+        fosssweeper::GameConfiguration(fosssweeper::GameDifficulty::Beginner), true,
+        fosssweeper::GameState::Playing, 0,
         "bq......"
         "bb......"
         "......b."
@@ -424,26 +424,26 @@ SCENARIO("A Button of a GameModel is clicked") {
         "......bd");
 
     WHEN("A questioned Button is clicked") {
-      game_model.ClickButton(1, 0);
+      game_model.clickButton(1, 0);
 
       THEN("The GameState is still playing") {
-        CHECK(game_model.GetGameState() == fsweep::GameState::Playing);
+        CHECK(game_model.getGameState() == fosssweeper::GameState::Playing);
       }
 
       THEN("The questioned Button is down") {
-        CHECK(game_model.GetButton(1, 0).GetButtonState() ==
-              fsweep::ButtonState::Down);
+        CHECK(game_model.getButton(1, 0).getButtonState() ==
+              fosssweeper::ButtonState::Down);
       }
     }
 
     WHEN("A Button in the middle of an bombless are is clicked") {
-      game_model.ClickButton(4, 4);
+      game_model.clickButton(4, 4);
 
       THEN("The bombless area was floodfill pressed") {
-        CHECK(game_model.GetButton(0, 4).GetButtonState() ==
-              fsweep::ButtonState::Down);
-        CHECK(game_model.GetButton(4, 3).GetButtonState() ==
-              fsweep::ButtonState::Down);
+        CHECK(game_model.getButton(0, 4).getButtonState() ==
+              fosssweeper::ButtonState::Down);
+        CHECK(game_model.getButton(4, 3).getButtonState() ==
+              fosssweeper::ButtonState::Down);
       }
     }
   }
@@ -451,26 +451,26 @@ SCENARIO("A Button of a GameModel is clicked") {
 
 SCENARIO("A Button of a GameModel is alt clicked") {
   GIVEN("A default constructed GameModel") {
-    fsweep::GameModel game_model;
+    fosssweeper::GameModel game_model;
 
     WHEN("The Button at (0, 0) is alt clicked") {
-      game_model.AltClickButton(0, 0);
+      game_model.altClickButton(0, 0);
 
       THEN("The state of the Button at (0, 0) is Flagged") {
-        CHECK(game_model.GetButton(0, 0).GetButtonState() ==
-              fsweep::ButtonState::Flagged);
+        CHECK(game_model.getButton(0, 0).getButtonState() ==
+              fosssweeper::ButtonState::Flagged);
       }
 
       THEN("The Button at (0, 0) has no bomb") {
-        CHECK(game_model.GetButton(0, 0).GetHasBomb() == false);
+        CHECK(game_model.getButton(0, 0).getHasBomb() == false);
       }
     }
   }
 
   GIVEN("A GameModel in playing state with questions enabled") {
-    fsweep::GameModel game_model(
-        fsweep::GameConfiguration(fsweep::GameDifficulty::Beginner), true,
-        fsweep::GameState::Playing, 0,
+    fosssweeper::GameModel game_model(
+        fosssweeper::GameConfiguration(fosssweeper::GameDifficulty::Beginner), true,
+        fosssweeper::GameState::Playing, 0,
         "bfq....."
         "bb......"
         "......b."
@@ -481,54 +481,54 @@ SCENARIO("A Button of a GameModel is alt clicked") {
         "......bd");
 
     WHEN("A down Button is alt clicked") {
-      game_model.AltClickButton(7, 7);
+      game_model.altClickButton(7, 7);
 
       THEN("The Button is still down") {
-        CHECK(game_model.GetButton(7, 7).GetButtonState() ==
-              fsweep::ButtonState::Down);
+        CHECK(game_model.getButton(7, 7).getButtonState() ==
+              fosssweeper::ButtonState::Down);
       }
     }
 
     WHEN("A questioned Button is alt clicked") {
-      game_model.AltClickButton(2, 0);
+      game_model.altClickButton(2, 0);
 
       THEN("The Button is now has None state") {
-        CHECK(game_model.GetButton(2, 0).GetButtonState() ==
-              fsweep::ButtonState::None);
+        CHECK(game_model.getButton(2, 0).getButtonState() ==
+              fosssweeper::ButtonState::None);
       }
     }
 
     WHEN("A flagged Button is alt clicked") {
-      game_model.AltClickButton(1, 0);
+      game_model.altClickButton(1, 0);
 
       THEN("The Button now has Questioned state") {
-        CHECK(game_model.GetButton(1, 0).GetButtonState() ==
-              fsweep::ButtonState::Questioned);
+        CHECK(game_model.getButton(1, 0).getButtonState() ==
+              fosssweeper::ButtonState::Questioned);
       }
 
       THEN("The flag count is decremented") {
-        CHECK(game_model.GetFlagCount() == 0);
+        CHECK(game_model.getFlagCount() == 0);
       }
     }
 
     WHEN("A Button with None state is alt clicked") {
-      game_model.AltClickButton(3, 0);
+      game_model.altClickButton(3, 0);
 
       THEN("The Button is now flagged") {
-        CHECK(game_model.GetButton(3, 0).GetButtonState() ==
-              fsweep::ButtonState::Flagged);
+        CHECK(game_model.getButton(3, 0).getButtonState() ==
+              fosssweeper::ButtonState::Flagged);
       }
 
       THEN("The flag count is incremented") {
-        CHECK(game_model.GetFlagCount() == 2);
+        CHECK(game_model.getFlagCount() == 2);
       }
     }
   }
 
   GIVEN("A GameModel in playing state with questions disabled") {
-    fsweep::GameModel game_model(
-        fsweep::GameConfiguration(fsweep::GameDifficulty::Beginner), false,
-        fsweep::GameState::Playing, 0,
+    fosssweeper::GameModel game_model(
+        fosssweeper::GameConfiguration(fosssweeper::GameDifficulty::Beginner), false,
+        fosssweeper::GameState::Playing, 0,
         "bf......"
         "bb......"
         "......b."
@@ -539,37 +539,37 @@ SCENARIO("A Button of a GameModel is alt clicked") {
         "......bd");
 
     WHEN("A down Button is alt clicked") {
-      game_model.AltClickButton(7, 7);
+      game_model.altClickButton(7, 7);
 
       THEN("The Button is still down") {
-        CHECK(game_model.GetButton(7, 7).GetButtonState() ==
-              fsweep::ButtonState::Down);
+        CHECK(game_model.getButton(7, 7).getButtonState() ==
+              fosssweeper::ButtonState::Down);
       }
     }
 
     WHEN("A flagged Button is alt clicked") {
-      game_model.AltClickButton(1, 0);
+      game_model.altClickButton(1, 0);
 
       THEN("The Button now has None state") {
-        CHECK(game_model.GetButton(1, 0).GetButtonState() ==
-              fsweep::ButtonState::None);
+        CHECK(game_model.getButton(1, 0).getButtonState() ==
+              fosssweeper::ButtonState::None);
       }
 
       THEN("The flag count is decremented") {
-        CHECK(game_model.GetFlagCount() == 0);
+        CHECK(game_model.getFlagCount() == 0);
       }
     }
 
     WHEN("A Button with None state is alt clicked") {
-      game_model.AltClickButton(3, 0);
+      game_model.altClickButton(3, 0);
 
       THEN("The Button is now flagged") {
-        CHECK(game_model.GetButton(3, 0).GetButtonState() ==
-              fsweep::ButtonState::Flagged);
+        CHECK(game_model.getButton(3, 0).getButtonState() ==
+              fosssweeper::ButtonState::Flagged);
       }
 
       THEN("The flag count is incremented") {
-        CHECK(game_model.GetFlagCount() == 2);
+        CHECK(game_model.getFlagCount() == 2);
       }
     }
   }
@@ -577,42 +577,42 @@ SCENARIO("A Button of a GameModel is alt clicked") {
 
 SCENARIO("A Button of a GameModel is area clicked") {
   GIVEN("A GameModel with GameState::None") {
-    fsweep::GameModel game_model;
+    fosssweeper::GameModel game_model;
 
     WHEN("A Button is area clicked") {
-      game_model.AreaClickButton(5, 5);
+      game_model.areaClickButton(5, 5);
 
       THEN("The GameState is None") {
-        CHECK(game_model.GetGameState() == fsweep::GameState::None);
+        CHECK(game_model.getGameState() == fosssweeper::GameState::None);
       }
 
       THEN("All Button objects in the area still have None state") {
-        CHECK(game_model.GetButton(4, 4).GetButtonState() ==
-              fsweep::ButtonState::None);
-        CHECK(game_model.GetButton(5, 4).GetButtonState() ==
-              fsweep::ButtonState::None);
-        CHECK(game_model.GetButton(6, 4).GetButtonState() ==
-              fsweep::ButtonState::None);
-        CHECK(game_model.GetButton(4, 5).GetButtonState() ==
-              fsweep::ButtonState::None);
-        CHECK(game_model.GetButton(5, 5).GetButtonState() ==
-              fsweep::ButtonState::None);
-        CHECK(game_model.GetButton(6, 5).GetButtonState() ==
-              fsweep::ButtonState::None);
-        CHECK(game_model.GetButton(4, 6).GetButtonState() ==
-              fsweep::ButtonState::None);
-        CHECK(game_model.GetButton(5, 6).GetButtonState() ==
-              fsweep::ButtonState::None);
-        CHECK(game_model.GetButton(6, 6).GetButtonState() ==
-              fsweep::ButtonState::None);
+        CHECK(game_model.getButton(4, 4).getButtonState() ==
+              fosssweeper::ButtonState::None);
+        CHECK(game_model.getButton(5, 4).getButtonState() ==
+              fosssweeper::ButtonState::None);
+        CHECK(game_model.getButton(6, 4).getButtonState() ==
+              fosssweeper::ButtonState::None);
+        CHECK(game_model.getButton(4, 5).getButtonState() ==
+              fosssweeper::ButtonState::None);
+        CHECK(game_model.getButton(5, 5).getButtonState() ==
+              fosssweeper::ButtonState::None);
+        CHECK(game_model.getButton(6, 5).getButtonState() ==
+              fosssweeper::ButtonState::None);
+        CHECK(game_model.getButton(4, 6).getButtonState() ==
+              fosssweeper::ButtonState::None);
+        CHECK(game_model.getButton(5, 6).getButtonState() ==
+              fosssweeper::ButtonState::None);
+        CHECK(game_model.getButton(6, 6).getButtonState() ==
+              fosssweeper::ButtonState::None);
       }
     }
   }
 
   GIVEN("A GameModel in playing state") {
-    fsweep::GameModel game_model(
-        fsweep::GameConfiguration(fsweep::GameDifficulty::Beginner), true,
-        fsweep::GameState::Playing, 0,
+    fosssweeper::GameModel game_model(
+        fosssweeper::GameConfiguration(fosssweeper::GameDifficulty::Beginner), true,
+        fosssweeper::GameState::Playing, 0,
         "bq...dc."
         "bb...b.."
         "..ddddd."
@@ -624,110 +624,110 @@ SCENARIO("A Button of a GameModel is area clicked") {
 
     WHEN("A Button is area clicked where chording is possible and no bombs are "
          "hit") {
-      game_model.AreaClickButton(4, 4);
+      game_model.areaClickButton(4, 4);
 
       THEN("The GameState is still playing") {
-        CHECK(game_model.GetGameState() == fsweep::GameState::Playing);
+        CHECK(game_model.getGameState() == fosssweeper::GameState::Playing);
       }
 
       THEN("All the near Button objects have the correct state") {
-        CHECK(game_model.GetButton(3, 3).GetButtonState() ==
-              fsweep::ButtonState::Down);
-        CHECK(game_model.GetButton(4, 3).GetButtonState() ==
-              fsweep::ButtonState::Flagged);
-        CHECK(game_model.GetButton(5, 3).GetButtonState() ==
-              fsweep::ButtonState::Down);
-        CHECK(game_model.GetButton(3, 4).GetButtonState() ==
-              fsweep::ButtonState::Down);
-        CHECK(game_model.GetButton(4, 4).GetButtonState() ==
-              fsweep::ButtonState::Down);
-        CHECK(game_model.GetButton(5, 4).GetButtonState() ==
-              fsweep::ButtonState::Down);
-        CHECK(game_model.GetButton(3, 5).GetButtonState() ==
-              fsweep::ButtonState::Down);
-        CHECK(game_model.GetButton(4, 5).GetButtonState() ==
-              fsweep::ButtonState::Flagged);
-        CHECK(game_model.GetButton(5, 5).GetButtonState() ==
-              fsweep::ButtonState::Down);
+        CHECK(game_model.getButton(3, 3).getButtonState() ==
+              fosssweeper::ButtonState::Down);
+        CHECK(game_model.getButton(4, 3).getButtonState() ==
+              fosssweeper::ButtonState::Flagged);
+        CHECK(game_model.getButton(5, 3).getButtonState() ==
+              fosssweeper::ButtonState::Down);
+        CHECK(game_model.getButton(3, 4).getButtonState() ==
+              fosssweeper::ButtonState::Down);
+        CHECK(game_model.getButton(4, 4).getButtonState() ==
+              fosssweeper::ButtonState::Down);
+        CHECK(game_model.getButton(5, 4).getButtonState() ==
+              fosssweeper::ButtonState::Down);
+        CHECK(game_model.getButton(3, 5).getButtonState() ==
+              fosssweeper::ButtonState::Down);
+        CHECK(game_model.getButton(4, 5).getButtonState() ==
+              fosssweeper::ButtonState::Flagged);
+        CHECK(game_model.getButton(5, 5).getButtonState() ==
+              fosssweeper::ButtonState::Down);
       }
     }
 
     WHEN("A Button is area clicked where chording is possible and a bomb is "
          "hit") {
-      game_model.AreaClickButton(2, 4);
+      game_model.areaClickButton(2, 4);
 
       THEN("The GameState is Dead") {
-        CHECK(game_model.GetGameState() == fsweep::GameState::Dead);
+        CHECK(game_model.getGameState() == fosssweeper::GameState::Dead);
       }
 
       THEN("All the near Button objects have the correct state") {
-        CHECK(game_model.GetButton(1, 3).GetButtonState() ==
-              fsweep::ButtonState::Down);
-        CHECK(game_model.GetButton(2, 3).GetButtonState() ==
-              fsweep::ButtonState::Down);
-        CHECK(game_model.GetButton(3, 3).GetButtonState() ==
-              fsweep::ButtonState::Down);
-        CHECK(game_model.GetButton(1, 4).GetButtonState() ==
-              fsweep::ButtonState::Flagged);
-        CHECK(game_model.GetButton(2, 4).GetButtonState() ==
-              fsweep::ButtonState::Down);
-        CHECK(game_model.GetButton(3, 4).GetButtonState() ==
-              fsweep::ButtonState::Down);
-        CHECK(game_model.GetButton(1, 5).GetButtonState() ==
-              fsweep::ButtonState::Down);
-        CHECK(game_model.GetButton(2, 5).GetButtonState() ==
-              fsweep::ButtonState::Flagged);
-        CHECK(game_model.GetButton(3, 5).GetButtonState() ==
-              fsweep::ButtonState::Down);
+        CHECK(game_model.getButton(1, 3).getButtonState() ==
+              fosssweeper::ButtonState::Down);
+        CHECK(game_model.getButton(2, 3).getButtonState() ==
+              fosssweeper::ButtonState::Down);
+        CHECK(game_model.getButton(3, 3).getButtonState() ==
+              fosssweeper::ButtonState::Down);
+        CHECK(game_model.getButton(1, 4).getButtonState() ==
+              fosssweeper::ButtonState::Flagged);
+        CHECK(game_model.getButton(2, 4).getButtonState() ==
+              fosssweeper::ButtonState::Down);
+        CHECK(game_model.getButton(3, 4).getButtonState() ==
+              fosssweeper::ButtonState::Down);
+        CHECK(game_model.getButton(1, 5).getButtonState() ==
+              fosssweeper::ButtonState::Down);
+        CHECK(game_model.getButton(2, 5).getButtonState() ==
+              fosssweeper::ButtonState::Flagged);
+        CHECK(game_model.getButton(3, 5).getButtonState() ==
+              fosssweeper::ButtonState::Down);
       }
     }
 
     WHEN("A button is area clicked where chording is not possible because "
          "there are more "
          "surrounding bombs than surrounding flags") {
-      game_model.AreaClickButton(5, 0);
+      game_model.areaClickButton(5, 0);
 
       THEN("The GameState is still Playing") {
-        CHECK(game_model.GetGameState() == fsweep::GameState::Playing);
+        CHECK(game_model.getGameState() == fosssweeper::GameState::Playing);
       }
 
       THEN("All the near Button objects have the same state") {
-        CHECK(game_model.GetButton(4, 0).GetButtonState() ==
-              fsweep::ButtonState::None);
-        CHECK(game_model.GetButton(5, 0).GetButtonState() ==
-              fsweep::ButtonState::Down);
-        CHECK(game_model.GetButton(6, 0).GetButtonState() ==
-              fsweep::ButtonState::Flagged);
-        CHECK(game_model.GetButton(4, 1).GetButtonState() ==
-              fsweep::ButtonState::None);
-        CHECK(game_model.GetButton(5, 1).GetButtonState() ==
-              fsweep::ButtonState::None);
-        CHECK(game_model.GetButton(6, 1).GetButtonState() ==
-              fsweep::ButtonState::None);
+        CHECK(game_model.getButton(4, 0).getButtonState() ==
+              fosssweeper::ButtonState::None);
+        CHECK(game_model.getButton(5, 0).getButtonState() ==
+              fosssweeper::ButtonState::Down);
+        CHECK(game_model.getButton(6, 0).getButtonState() ==
+              fosssweeper::ButtonState::Flagged);
+        CHECK(game_model.getButton(4, 1).getButtonState() ==
+              fosssweeper::ButtonState::None);
+        CHECK(game_model.getButton(5, 1).getButtonState() ==
+              fosssweeper::ButtonState::None);
+        CHECK(game_model.getButton(6, 1).getButtonState() ==
+              fosssweeper::ButtonState::None);
       }
     }
 
     WHEN("A button is area clicked where chording is not possible because it "
          "is not down") {
-      game_model.AreaClickButton(3, 0);
+      game_model.areaClickButton(3, 0);
 
       THEN("The GameState is still Playing") {
-        CHECK(game_model.GetGameState() == fsweep::GameState::Playing);
+        CHECK(game_model.getGameState() == fosssweeper::GameState::Playing);
       }
 
       THEN("All the near Button objects have the same state") {
-        CHECK(game_model.GetButton(2, 0).GetButtonState() ==
-              fsweep::ButtonState::None);
-        CHECK(game_model.GetButton(3, 0).GetButtonState() ==
-              fsweep::ButtonState::None);
-        CHECK(game_model.GetButton(4, 0).GetButtonState() ==
-              fsweep::ButtonState::None);
-        CHECK(game_model.GetButton(2, 1).GetButtonState() ==
-              fsweep::ButtonState::None);
-        CHECK(game_model.GetButton(3, 1).GetButtonState() ==
-              fsweep::ButtonState::None);
-        CHECK(game_model.GetButton(4, 1).GetButtonState() ==
-              fsweep::ButtonState::None);
+        CHECK(game_model.getButton(2, 0).getButtonState() ==
+              fosssweeper::ButtonState::None);
+        CHECK(game_model.getButton(3, 0).getButtonState() ==
+              fosssweeper::ButtonState::None);
+        CHECK(game_model.getButton(4, 0).getButtonState() ==
+              fosssweeper::ButtonState::None);
+        CHECK(game_model.getButton(2, 1).getButtonState() ==
+              fosssweeper::ButtonState::None);
+        CHECK(game_model.getButton(3, 1).getButtonState() ==
+              fosssweeper::ButtonState::None);
+        CHECK(game_model.getButton(4, 1).getButtonState() ==
+              fosssweeper::ButtonState::None);
       }
     }
   }
@@ -735,21 +735,21 @@ SCENARIO("A Button of a GameModel is area clicked") {
 
 SCENARIO("The game time of a GameModel is updated") {
   GIVEN("A GameModel with GameState::None") {
-    fsweep::GameModel game_model;
+    fosssweeper::GameModel game_model;
 
     WHEN("The timer is updated") {
-      game_model.UpdateTime(14);
+      game_model.updateTime(14);
 
       THEN("The timer value is still 0") {
-        CHECK(game_model.GetGameTime() == 0);
+        CHECK(game_model.getGameTime() == 0);
       }
     }
   }
 
   GIVEN("A GameModel with GameState::Playing") {
-    fsweep::GameModel game_model(
-        fsweep::GameConfiguration(fsweep::GameDifficulty::Beginner), true,
-        fsweep::GameState::Playing, 0,
+    fosssweeper::GameModel game_model(
+        fosssweeper::GameConfiguration(fosssweeper::GameDifficulty::Beginner), true,
+        fosssweeper::GameState::Playing, 0,
         "bq......"
         "bb......"
         "......b."
@@ -760,14 +760,14 @@ SCENARIO("The game time of a GameModel is updated") {
         "......bd");
 
     WHEN("The timer is updated to 14") {
-      game_model.UpdateTime(14);
+      game_model.updateTime(14);
 
-      THEN("The timer value is 14") { CHECK(game_model.GetGameTime() == 14); }
+      THEN("The timer value is 14") { CHECK(game_model.getGameTime() == 14); }
 
       WHEN("The timer is updated again to 16") {
-        game_model.UpdateTime(16);
+        game_model.updateTime(16);
 
-        THEN("The timer value is 16") { CHECK(game_model.GetGameTime() == 16); }
+        THEN("The timer value is 16") { CHECK(game_model.getGameTime() == 16); }
       }
     }
   }
@@ -775,21 +775,21 @@ SCENARIO("The game time of a GameModel is updated") {
 
 SCENARIO("Questions are enabled or disabled throughout a GameModel") {
   GIVEN("A GameModel with GameState::None with questions disabled") {
-    fsweep::GameModel game_model;
+    fosssweeper::GameModel game_model;
 
     WHEN("Questions are enabled") {
-      game_model.SetQuestionsEnabled(true);
+      game_model.setQuestionsEnabled(true);
 
       THEN("Questions are enabled") {
-        CHECK(game_model.GetQuestionsEnabled() == true);
+        CHECK(game_model.getQuestionsEnabled() == true);
       }
     }
   }
 
   GIVEN("A GameModel with GameState::Playing with questions enabled") {
-    fsweep::GameModel game_model(
-        fsweep::GameConfiguration(fsweep::GameDifficulty::Beginner), true,
-        fsweep::GameState::Playing, 0,
+    fosssweeper::GameModel game_model(
+        fosssweeper::GameConfiguration(fosssweeper::GameDifficulty::Beginner), true,
+        fosssweeper::GameState::Playing, 0,
         "bfq....."
         "bb......"
         "......b."
@@ -800,11 +800,11 @@ SCENARIO("Questions are enabled or disabled throughout a GameModel") {
         "......bd");
 
     WHEN("Questions are disabled") {
-      game_model.SetQuestionsEnabled(false);
+      game_model.setQuestionsEnabled(false);
 
       THEN("All questioned buttons now have ButtonState::None") {
-        CHECK(game_model.GetButton(2, 0).GetButtonState() ==
-              fsweep::ButtonState::None);
+        CHECK(game_model.getButton(2, 0).getButtonState() ==
+              fosssweeper::ButtonState::None);
       }
     }
   }

@@ -16,9 +16,9 @@
 
 add_subdirectory(generated)
 add_subdirectory(model)
-if(FSWEEP_BUILD_DESKTOP)
+if(FOSSSWEEPER_BUILD_DESKTOP)
     add_subdirectory(desktop_view)
 endif()
-if(FSWEEP_BUILD_TESTS)
+if(FOSSSWEEPER_BUILD_TESTS)
     add_subdirectory(test)
 endif()

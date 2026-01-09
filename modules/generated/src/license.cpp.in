@@ -22,6 +22,6 @@
  *
  */
 
-#include <fsweep/license.hpp>
+#include <fosssweeper/license.hpp>
 
-const char *const fsweep::LICENSE_TEXT = @FSWEEP_LICENSE_TEXT @;
+const char *const fosssweeper::LICENSE_TEXT = @FOSSSWEEPER_LICENSE_TEXT@;

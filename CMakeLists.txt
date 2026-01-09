@@ -14,7 +14,9 @@
 # You should have received a copy of the GNU General Public License along with FossSweeper. If not, see <https://www.gnu.org/licenses/>.
 # 
 
-cmake_minimum_required(VERSION 3.24.1)
+cmake_minimum_required(VERSION 4.2.1)
+
+string(COMPARE EQUAL "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_SOURCE_DIR}" FOSSSWEEPER_STANDALONE)
 
 project(
     fosssweeper
@@ -23,19 +25,13 @@ project(
     LANGUAGES C CXX
 )
 
-set(FSWEEP_CXX_STANDARD 20)
-set(FSWEEP_CMAKE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
-set(FSWEEP_CMAKE_SCRIPT_DIR "${FSWEEP_CMAKE_SOURCE_DIR}/CMake/")
+set(FOSSSWEEPER_CXX_STANDARD 20)
+set(FOSSSWEEPER_CMAKE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
+set(FOSSSWEEPER_CMAKE_SCRIPT_DIR "${FOSSSWEEPER_CMAKE_SOURCE_DIR}/CMake/")
 
-if(DEFINED PROJECT_NAME)
-  set(FSWEEP_MAIN_PROJECT ON)
-else()
-  set(FSWEEP_MAIN_PROJECT OFF)
-endif()
-
-option(FSWEEP_MONOLITHIC "Find wxWidgets in the extern folder and add catch2 via CMake fetch_content." ${FSWEEP_MAIN_PROJECT})
-option(FSWEEP_BUILD_DESKTOP "Build the desktop application." ON)
-option(FSWEEP_BUILD_TESTS "Enable the automatic test framework." ON)
-option(FSWEEP_INSTALL_DESKTOP "Install the desktop application using CPack." ON)
+option(FOSSSWEEPER_MONOLITHIC "Find wxWidgets in the extern folder and add catch2 via CMake fetch_content." ${FOSSSWEEPER_STANDALONE})
+option(FOSSSWEEPER_BUILD_DESKTOP "Build the desktop application." ON)
+option(FOSSSWEEPER_BUILD_TESTS "Enable the automatic test framework." ON)
+option(FOSSSWEEPER_INSTALL_DESKTOP "Install the desktop application using CPack." ON)
 
 add_subdirectory(modules)

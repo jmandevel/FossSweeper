@@ -22,22 +22,22 @@
  *
  */
 
-#ifndef FSWEEP_TEST_TIMER_HPP
-#define FSWEEP_TEST_TIMER_HPP
+#ifndef FOSSSWEEPER_TEST_TIMER_HPP
+#define FOSSSWEEPER_TEST_TIMER_HPP
 
-#include <fsweep/Timer.hpp>
+#include <fosssweeper/timer.hpp>
 
-namespace fsweep {
-class TestTimer : public fsweep::Timer {
+namespace fosssweeper {
+class TestTimer : public fosssweeper::Timer {
 private:
   bool is_running = false;
 
 public:
-  unsigned long GetGameTime() override;
-  void Start() override;
-  void Stop() override;
-  bool GetIsRunning() const noexcept;
+  unsigned long getGameTime() override;
+  void start() override;
+  void stop() override;
+  bool getIsRunning() const noexcept;
 };
-} // namespace fsweep
+} // namespace fosssweeper
 
 #endif

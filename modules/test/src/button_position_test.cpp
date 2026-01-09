@@ -23,11 +23,11 @@
  */
 
 #include <catch2/catch_all.hpp>
-#include <fsweep/ButtonPosition.hpp>
+#include <fosssweeper/button_position.hpp>
 
 SCENARIO("Create a ButtonPosition") {
   GIVEN("A ButtonPosition created with its default constructor") {
-    fsweep::ButtonPosition button_position;
+    fosssweeper::ButtonPosition button_position;
 
     THEN("The property values of the button_position are (-1, -1)") {
       CHECK(button_position.x == -1);
@@ -37,7 +37,7 @@ SCENARIO("Create a ButtonPosition") {
 
   GIVEN("A ButtonPosition created with its overloaded constructor given the "
         "arguments (5, 10)") {
-    fsweep::ButtonPosition button_position(5, 10);
+    fosssweeper::ButtonPosition button_position(5, 10);
 
     THEN("The property values of the button_position are (5, 10)") {
       CHECK(button_position.x == 5);
@@ -48,18 +48,18 @@ SCENARIO("Create a ButtonPosition") {
 
 SCENARIO("Determine if a ButtonPosition has a direction") {
   GIVEN("A ButtonPosition at (0, 0)") {
-    fsweep::ButtonPosition button_position(0, 0);
+    fosssweeper::ButtonPosition button_position(0, 0);
 
     THEN("The button_position does not have a left") {
-      CHECK(!button_position.HasLeft());
+      CHECK(!button_position.hasLeft());
     }
 
     THEN("The button_position does not have an up") {
-      CHECK(!button_position.HasUp());
+      CHECK(!button_position.hasUp());
     }
 
     THEN("The button_position does not have a left up") {
-      CHECK(!button_position.HasLeftUp());
+      CHECK(!button_position.hasLeftUp());
     }
 
     GIVEN("A button grid width and height of 1 and 1") {
@@ -67,23 +67,23 @@ SCENARIO("Determine if a ButtonPosition has a direction") {
       const int height = 1;
 
       THEN("The button_position does not have a right") {
-        CHECK(!button_position.HasRight(width));
+        CHECK(!button_position.hasRight(width));
       }
 
       THEN("The button_position does not have a down") {
-        CHECK(!button_position.HasDown(height));
+        CHECK(!button_position.hasDown(height));
       }
 
       THEN("The button_position does not have a left down") {
-        CHECK(!button_position.HasLeftDown(height));
+        CHECK(!button_position.hasLeftDown(height));
       }
 
       THEN("The button_position does not have a right down") {
-        CHECK(!button_position.HasRightDown(width, height));
+        CHECK(!button_position.hasRightDown(width, height));
       }
 
       THEN("The button_position does not have a right_up") {
-        CHECK(!button_position.HasRightUp(width));
+        CHECK(!button_position.hasRightUp(width));
       }
     }
 
@@ -92,46 +92,46 @@ SCENARIO("Determine if a ButtonPosition has a direction") {
       const int height = 2;
 
       THEN("The button_position has a right") {
-        CHECK(button_position.HasRight(width));
+        CHECK(button_position.hasRight(width));
       }
 
       THEN("The button_position has a down") {
-        CHECK(button_position.HasDown(height));
+        CHECK(button_position.hasDown(height));
       }
 
       THEN("The button_position has a right down") {
-        CHECK(button_position.HasRightDown(width, height));
+        CHECK(button_position.hasRightDown(width, height));
       }
 
       THEN("The button_position does not have a left down") {
-        CHECK(!button_position.HasLeftDown(height));
+        CHECK(!button_position.hasLeftDown(height));
       }
 
       THEN("The button_position does not have a right up") {
-        CHECK(!button_position.HasRightUp(width));
+        CHECK(!button_position.hasRightUp(width));
       }
     }
   }
 
   GIVEN("A ButtonPosition at (1, 1)") {
-    const fsweep::ButtonPosition button_position(1, 1);
+    const fosssweeper::ButtonPosition button_position(1, 1);
 
-    THEN("The button_position has a left") { CHECK(button_position.HasLeft()); }
+    THEN("The button_position has a left") { CHECK(button_position.hasLeft()); }
 
-    THEN("The button_position has an up") { CHECK(button_position.HasUp()); }
+    THEN("The button_position has an up") { CHECK(button_position.hasUp()); }
 
     THEN("The button_position has a left up") {
-      CHECK(button_position.HasLeftUp());
+      CHECK(button_position.hasLeftUp());
     }
   }
 }
 
 SCENARIO("Get an adjacent ButtonPosition from a ButtonPosition") {
   GIVEN("A ButtonPosition at (1, 1)") {
-    const fsweep::ButtonPosition button_position(1, 1);
+    const fosssweeper::ButtonPosition button_position(1, 1);
 
     WHEN("The left position is calculated") {
-      const fsweep::ButtonPosition left_position = button_position.GetLeft();
+      const fosssweeper::ButtonPosition left_position = button_position.getLeft();
 
       THEN("The left position is (0, 1)") {
         CHECK(left_position.x == 0);
@@ -140,7 +140,7 @@ SCENARIO("Get an adjacent ButtonPosition from a ButtonPosition") {
     }
 
     WHEN("The right position is calculated") {
-      const fsweep::ButtonPosition right_position = button_position.GetRight();
+      const fosssweeper::ButtonPosition right_position = button_position.getRight();
 
       THEN("The right position is (2, 1)") {
         CHECK(right_position.x == 2);
@@ -149,7 +149,7 @@ SCENARIO("Get an adjacent ButtonPosition from a ButtonPosition") {
     }
 
     WHEN("The up position is calculated") {
-      const fsweep::ButtonPosition up_position = button_position.GetUp();
+      const fosssweeper::ButtonPosition up_position = button_position.getUp();
 
       THEN("The up position is (1, 0)") {
         CHECK(up_position.x == 1);
@@ -158,7 +158,7 @@ SCENARIO("Get an adjacent ButtonPosition from a ButtonPosition") {
     }
 
     WHEN("The down position is calculated") {
-      const fsweep::ButtonPosition down_position = button_position.GetDown();
+      const fosssweeper::ButtonPosition down_position = button_position.getDown();
 
       THEN("The down position is (1, 2)") {
         CHECK(down_position.x == 1);
@@ -167,8 +167,8 @@ SCENARIO("Get an adjacent ButtonPosition from a ButtonPosition") {
     }
 
     WHEN("The left up position is calculated") {
-      const fsweep::ButtonPosition left_up_position =
-          button_position.GetLeftUp();
+      const fosssweeper::ButtonPosition left_up_position =
+          button_position.getLeftUp();
 
       THEN("The left up position is (0, 0)") {
         CHECK(left_up_position.x == 0);
@@ -177,8 +177,8 @@ SCENARIO("Get an adjacent ButtonPosition from a ButtonPosition") {
     }
 
     WHEN("The right up position is calculated") {
-      const fsweep::ButtonPosition right_up_position =
-          button_position.GetRightUp();
+      const fosssweeper::ButtonPosition right_up_position =
+          button_position.getRightUp();
 
       THEN("The right up position is (2, 0)") {
         CHECK(right_up_position.x == 2);
@@ -187,8 +187,8 @@ SCENARIO("Get an adjacent ButtonPosition from a ButtonPosition") {
     }
 
     WHEN("The left down position is calculated") {
-      const fsweep::ButtonPosition left_down_position =
-          button_position.GetLeftDown();
+      const fosssweeper::ButtonPosition left_down_position =
+          button_position.getLeftDown();
 
       THEN("The left down position is (0, 2)") {
         CHECK(left_down_position.x == 0);
@@ -197,8 +197,8 @@ SCENARIO("Get an adjacent ButtonPosition from a ButtonPosition") {
     }
 
     WHEN("The right down position is calculated") {
-      const fsweep::ButtonPosition right_down_position =
-          button_position.GetRightDown();
+      const fosssweeper::ButtonPosition right_down_position =
+          button_position.getRightDown();
 
       THEN("The right down position is (2, 2)") {
         CHECK(right_down_position.x == 2);
@@ -210,10 +210,10 @@ SCENARIO("Get an adjacent ButtonPosition from a ButtonPosition") {
 
 SCENARIO("The equality is tested between two ButtonPosition objects") {
   GIVEN("A ButtonPosition named a at (0,2)") {
-    const fsweep::ButtonPosition a(0, 2);
+    const fosssweeper::ButtonPosition a(0, 2);
 
     GIVEN("A ButtonPosition named b at (0,2)") {
-      const fsweep::ButtonPosition b(0, 2);
+      const fosssweeper::ButtonPosition b(0, 2);
 
       THEN("a equals b") { CHECK(a == b); }
 
@@ -221,7 +221,7 @@ SCENARIO("The equality is tested between two ButtonPosition objects") {
     }
 
     GIVEN("A ButtonPosition named b at (1, 2)") {
-      const fsweep::ButtonPosition b(1, 2);
+      const fosssweeper::ButtonPosition b(1, 2);
 
       THEN("a equals b is not true") { CHECK(!(a == b)); }
 
@@ -229,7 +229,7 @@ SCENARIO("The equality is tested between two ButtonPosition objects") {
     }
 
     GIVEN("A ButtonPosition named b at (0, 1)") {
-      const fsweep::ButtonPosition b(0, 1);
+      const fosssweeper::ButtonPosition b(0, 1);
 
       THEN("a equals b is not true") { CHECK(!(a == b)); }
 
@@ -240,10 +240,10 @@ SCENARIO("The equality is tested between two ButtonPosition objects") {
 
 SCENARIO("Nearness is determined between two ButtonPosition objects") {
   GIVEN("A ButtonPosition named a at (2,2)") {
-    const fsweep::ButtonPosition a(2, 2);
+    const fosssweeper::ButtonPosition a(2, 2);
 
     GIVEN("A ButtonPosition named b at (1,1)") {
-      const fsweep::ButtonPosition b(1, 1);
+      const fosssweeper::ButtonPosition b(1, 1);
 
       THEN("a is near b") {
         CHECK(a.isNear(b));
@@ -252,7 +252,7 @@ SCENARIO("Nearness is determined between two ButtonPosition objects") {
     }
 
     GIVEN("A ButtonPosition named b at (1, 2)") {
-      const fsweep::ButtonPosition b(1, 2);
+      const fosssweeper::ButtonPosition b(1, 2);
 
       THEN("a is near b") {
         CHECK(a.isNear(b));
@@ -261,7 +261,7 @@ SCENARIO("Nearness is determined between two ButtonPosition objects") {
     }
 
     GIVEN("A ButtonPosition named b at (1, 3") {
-      const fsweep::ButtonPosition b(1, 3);
+      const fosssweeper::ButtonPosition b(1, 3);
 
       THEN("a is near b") {
         CHECK(a.isNear(b));
@@ -270,7 +270,7 @@ SCENARIO("Nearness is determined between two ButtonPosition objects") {
     }
 
     GIVEN("A ButtonPosition named b at (0, 0)") {
-      const fsweep::ButtonPosition b(0, 0);
+      const fosssweeper::ButtonPosition b(0, 0);
 
       THEN("a is not near b") {
         CHECK(!a.isNear(b));
@@ -279,7 +279,7 @@ SCENARIO("Nearness is determined between two ButtonPosition objects") {
     }
 
     GIVEN("A ButtonPosition named b at (2, 0)") {
-      const fsweep::ButtonPosition b(2, 0);
+      const fosssweeper::ButtonPosition b(2, 0);
 
       THEN("a is not near b") {
         CHECK(!a.isNear(b));
@@ -288,7 +288,7 @@ SCENARIO("Nearness is determined between two ButtonPosition objects") {
     }
 
     GIVEN("A ButtonPosition named b at (0, 2)") {
-      const fsweep::ButtonPosition b(0, 2);
+      const fosssweeper::ButtonPosition b(0, 2);
 
       THEN("a is not near b") {
         CHECK(!a.isNear(b));

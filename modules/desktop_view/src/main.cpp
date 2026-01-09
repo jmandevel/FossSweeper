@@ -22,7 +22,7 @@
  *
  */
 
-#include "DesktopApp.hpp"
+#include "desktop_app.hpp"
 #include "wx_include.hpp"
 
-wxIMPLEMENT_APP(fsweep::DesktopApp);
+wxIMPLEMENT_APP(fosssweeper::DesktopApp);

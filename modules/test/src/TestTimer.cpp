@@ -24,12 +24,12 @@
 
 #include "TestTimer.hpp"
 
-unsigned long fsweep::TestTimer::GetGameTime() { return 0; }
+unsigned long fosssweeper::TestTimer::getGameTime() { return 0; }
 
-void fsweep::TestTimer::Start() { this->is_running = true; }
+void fosssweeper::TestTimer::start() { this->is_running = true; }
 
-void fsweep::TestTimer::Stop() { this->is_running = false; }
+void fosssweeper::TestTimer::stop() { this->is_running = false; }
 
-bool fsweep::TestTimer::GetIsRunning() const noexcept {
+bool fosssweeper::TestTimer::getIsRunning() const noexcept {
   return this->is_running;
 }

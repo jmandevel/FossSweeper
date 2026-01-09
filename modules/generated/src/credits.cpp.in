@@ -22,6 +22,6 @@
  *
  */
 
-#include <fsweep/credits.hpp>
+#include <fosssweeper/credits.hpp>
 
-const char *const fsweep::CREDITS_TEXT = @FSWEEP_CREDITS_TEXT @;
+const char *const fosssweeper::CREDITS_TEXT = @FOSSSWEEPER_CREDITS_TEXT@;

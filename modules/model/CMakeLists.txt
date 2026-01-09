@@ -14,22 +14,22 @@
 # You should have received a copy of the GNU General Public License along with FossSweeper. If not, see <https://www.gnu.org/licenses/>.
 # 
 
-add_library(fsweep_model STATIC "")
-add_library(fsweep::model ALIAS fsweep_model)
-target_include_directories(fsweep_model
+add_library(fosssweeper_model STATIC "")
+add_library(fosssweeper::model ALIAS fosssweeper_model)
+target_include_directories(fosssweeper_model
     PRIVATE
         "${CMAKE_CURRENT_SOURCE_DIR}/src/"
     PUBLIC
         "${CMAKE_CURRENT_SOURCE_DIR}/include/"
 )
 add_subdirectory(src)
-target_link_libraries(fsweep_model
+target_link_libraries(fosssweeper_model
     PUBLIC
-        fsweep::generated
+        fosssweeper::generated
 )
-set_target_properties(fsweep_model
+set_target_properties(fosssweeper_model
     PROPERTIES
-    OUTPUT_NAME "fsweepmodel"
-    CXX_STANDARD ${FSWEEP_CXX_STANDARD}
+    OUTPUT_NAME "fosssweepermodel"
+    CXX_STANDARD ${FOSSSWEEPER_CXX_STANDARD}
     CXX_STANDARD_REQUIRED TRUE
 )

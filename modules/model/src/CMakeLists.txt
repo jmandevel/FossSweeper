@@ -14,12 +14,12 @@
 # You should have received a copy of the GNU General Public License along with FossSweeper. If not, see <https://www.gnu.org/licenses/>.
 # 
 
-target_sources(fsweep_model
+target_sources(fosssweeper_model
     PRIVATE
-        "Button.cpp"
-        "DesktopModel.cpp"
-        "GameConfiguration.cpp"
-        "GameModel.cpp"
-        "LcdNumber.cpp"
-        "Sprite.cpp"
+        "button.cpp"
+        "desktop_model.cpp"
+        "game_configuration.cpp"
+        "game_model.cpp"
+        "lcd_number.cpp"
+        "sprite.cpp"
 )

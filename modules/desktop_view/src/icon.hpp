@@ -22,10 +22,10 @@
  *
  */
 
-#ifndef FSWEEP_ICON_HPP
-#define FSWEEP_ICON_HPP
+#ifndef FOSSSWEEPER_ICON_HPP
+#define FOSSSWEEPER_ICON_HPP
 
-namespace fsweep {
+namespace fosssweeper {
 extern const char *const ICON_XPM_DATA[];
 }
 
