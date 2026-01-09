@@ -52,7 +52,7 @@ void fosssweeper::GameFrame::resizeGamePanel(int x, int y) {
 
 fosssweeper::GameFrame::GameFrame(fosssweeper::DesktopView &view)
     : _view(std::ref(view)),
-      wxFrame(NULL, wxID_ANY, "FossSweeper", wxDefaultPosition, wxDefaultSize,
+      wxFrame(NULL, wxID_ANY, "", wxDefaultPosition, wxDefaultSize,
               wxDEFAULT_FRAME_STYLE & ~(wxRESIZE_BORDER | wxMAXIMIZE_BOX)) {
   this->SetIcon(wxIcon(fosssweeper::ICON_XPM_DATA));
 
