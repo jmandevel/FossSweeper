@@ -42,7 +42,7 @@ struct DesktopModel {
   bool _leftDown = false;
   bool _rightDown = false;
   bool _hoverFace = false;
-  int _pixelScale = 1;
+  int _pixelScale = 2;
 
   DesktopModel(fosssweeper::GameModel &game_model) noexcept;
 
