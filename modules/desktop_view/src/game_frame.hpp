@@ -34,7 +34,8 @@ namespace fosssweeper {
 class DesktopView;
 class GamePanel;
 
-struct GameFrame : public wxFrame {
+class GameFrame : public wxFrame {
+public:
   std::reference_wrapper<fosssweeper::DesktopView> _view;
   wxMenuItem *_beginnerItem;
   wxMenuItem *_intermediateItem;

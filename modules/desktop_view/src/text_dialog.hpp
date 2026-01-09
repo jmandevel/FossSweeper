@@ -30,7 +30,8 @@
 #include "wx_include.hpp"
 
 namespace fosssweeper {
-struct TextDialog : public wxDialog {
+class TextDialog : public wxDialog {
+public:
   TextDialog(wxWindow *parent, std::string_view title, std::string_view text);
 };
 

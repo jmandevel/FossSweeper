@@ -70,15 +70,15 @@ fosssweeper::GameFrame::GameFrame(fosssweeper::DesktopView &view)
 
   // create game menu items
   auto *const new_item = new wxMenuItem(game_menu, wxID_NEW, "&New\tF2");
-  _beginnerItem = new wxMenuItem(game_menu, wxID_ANY, "&Beginner");
-  _beginnerItem->SetCheckable(true);
-  _intermediateItem = new wxMenuItem(game_menu, wxID_ANY, "&Intermediate");
-  _intermediateItem->SetCheckable(true);
-  _expertItem = new wxMenuItem(game_menu, wxID_ANY, "&Expert");
-  _expertItem->SetCheckable(true);
+  this->_beginnerItem = new wxMenuItem(game_menu, wxID_ANY, "&Beginner");
+  this->_beginnerItem->SetCheckable(true);
+  this->_intermediateItem = new wxMenuItem(game_menu, wxID_ANY, "&Intermediate");
+  this->_intermediateItem->SetCheckable(true);
+  this->_expertItem = new wxMenuItem(game_menu, wxID_ANY, "&Expert");
+  this->_expertItem->SetCheckable(true);
   auto *const custom_item = new wxMenuItem(game_menu, wxID_ANY, "&Custom...");
-  _questionMarksItem = new wxMenuItem(game_menu, wxID_ANY, "&Question Marks");
-  _questionMarksItem->SetCheckable(true);
+  this->_questionMarksItem = new wxMenuItem(game_menu, wxID_ANY, "&Question Marks");
+  this->_questionMarksItem->SetCheckable(true);
   auto *const pixel_scale_item =
       new wxMenuItem(game_menu, wxID_ANY, "&Pixel Scale...");
   auto *const exit_item = new wxMenuItem(game_menu, wxID_EXIT, "&Exit\tAlt+F4");
@@ -86,13 +86,13 @@ fosssweeper::GameFrame::GameFrame(fosssweeper::DesktopView &view)
   // bind game menu items
   Bind(wxEVT_MENU, &fosssweeper::GameFrame::onNew, this, new_item->GetId());
   Bind(wxEVT_MENU, &fosssweeper::GameFrame::onBeginner, this,
-       _beginnerItem->GetId());
+       this->_beginnerItem->GetId());
   Bind(wxEVT_MENU, &fosssweeper::GameFrame::onIntermediate, this,
-       _intermediateItem->GetId());
-  Bind(wxEVT_MENU, &fosssweeper::GameFrame::onExpert, this, _expertItem->GetId());
+       this->_intermediateItem->GetId());
+  Bind(wxEVT_MENU, &fosssweeper::GameFrame::onExpert, this, this->_expertItem->GetId());
   Bind(wxEVT_MENU, &fosssweeper::GameFrame::onCustom, this, custom_item->GetId());
   Bind(wxEVT_MENU, &fosssweeper::GameFrame::onQuestionMarks, this,
-       _questionMarksItem->GetId());
+       this->_questionMarksItem->GetId());
   Bind(wxEVT_MENU, &fosssweeper::GameFrame::onPixelScale, this,
        pixel_scale_item->GetId());
   Bind(wxEVT_MENU, &fosssweeper::GameFrame::onExit, this, exit_item->GetId());
@@ -100,12 +100,12 @@ fosssweeper::GameFrame::GameFrame(fosssweeper::DesktopView &view)
   // append menu items to game menu
   game_menu->Append(new_item);
   game_menu->AppendSeparator();
-  game_menu->Append(_beginnerItem);
-  game_menu->Append(_intermediateItem);
-  game_menu->Append(_expertItem);
+  game_menu->Append(this->_beginnerItem);
+  game_menu->Append(this->_intermediateItem);
+  game_menu->Append(this->_expertItem);
   game_menu->Append(custom_item);
   game_menu->AppendSeparator();
-  game_menu->Append(_questionMarksItem);
+  game_menu->Append(this->_questionMarksItem);
   game_menu->Append(pixel_scale_item);
   game_menu->AppendSeparator();
   game_menu->Append(exit_item);
@@ -126,7 +126,7 @@ fosssweeper::GameFrame::GameFrame(fosssweeper::DesktopView &view)
   help_menu->Append(about_item);
 
   // check the beginner difficulty menu item
-  _beginnerItem->Check(true);
+  this->_beginnerItem->Check(true);
 
   // create the game panel
   auto &desktop_model = _view.get().getDesktopModel();
@@ -201,7 +201,7 @@ void fosssweeper::GameFrame::onCustom(wxCommandEvent &WXUNUSED(e)) {
 }
 
 void fosssweeper::GameFrame::onQuestionMarks(wxCommandEvent &WXUNUSED(e)) {
-  const auto questions_enabled = _questionMarksItem->IsChecked();
+  const auto questions_enabled = this->_questionMarksItem->IsChecked();
   this->_view.get().getGameModel().setQuestionsEnabled(questions_enabled);
   this->_gamePanel->drawChanged();
 }

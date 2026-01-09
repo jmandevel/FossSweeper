@@ -30,7 +30,8 @@
 #include "wx_include.hpp"
 
 namespace fosssweeper {
-struct PixelScaleDialog : public wxDialog {
+class PixelScaleDialog : public wxDialog {
+public:
   int _pixelScale = 1;
 
   wxSpinCtrl *_pixelScaleCtrl = nullptr;

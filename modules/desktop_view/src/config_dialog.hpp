@@ -32,7 +32,8 @@
 #include "wx_include.hpp"
 
 namespace fosssweeper {
-struct ConfigDialog : public wxDialog {
+class ConfigDialog : public wxDialog {
+public:
   int _buttonsWide = fosssweeper::GameConfiguration::BEGINNER_BUTTONS_WIDE;
   int _buttonsTall = fosssweeper::GameConfiguration::BEGINNER_BUTTONS_TALL;
   int _bombCount = fosssweeper::GameConfiguration::BEGINNER_BOMB_COUNT;

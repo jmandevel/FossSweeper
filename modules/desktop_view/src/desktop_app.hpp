@@ -33,7 +33,8 @@
 #include "wx_include.hpp"
 
 namespace fosssweeper {
-struct DesktopApp : public wxApp {
+class DesktopApp : public wxApp {
+public:
   fosssweeper::GameModel _gameModel = fosssweeper::GameModel();
   fosssweeper::DesktopModel _desktopModel = fosssweeper::DesktopModel(this->_gameModel);
   fosssweeper::DesktopView _view =

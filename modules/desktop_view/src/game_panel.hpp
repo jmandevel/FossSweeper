@@ -38,7 +38,8 @@
 namespace fosssweeper {
 class DesktopView;
 
-struct GamePanel : public wxPanel {
+class GamePanel : public wxPanel {
+public:
   std::reference_wrapper<fosssweeper::DesktopView> _desktopView;
   fosssweeper::DesktopTimer _timer;
   std::array<wxBitmap, static_cast<std::size_t>(fosssweeper::Sprite::Count)>

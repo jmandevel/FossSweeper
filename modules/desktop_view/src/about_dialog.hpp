@@ -28,7 +28,8 @@
 #include "wx_include.hpp"
 
 namespace fosssweeper {
-struct AboutDialog : public wxDialog {
+class AboutDialog : public wxDialog {
+public:
   AboutDialog(wxWindow *parent);
 
   void onCredits(wxCommandEvent &e);
