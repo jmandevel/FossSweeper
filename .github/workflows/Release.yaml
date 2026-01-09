@@ -72,13 +72,14 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt install libxinerama-dev libxcursor-dev xorg-dev libgtk-3-dev ninja-build
-      - name: Log Ninja version on non-Windows platforms
-        if: ${{ runner.os != 'Windows' }}
+      - name: Log Ninja version
         shell: bash
         run: ninja --version
       - name: Log CMake version
         shell: bash
         run: cmake --version
+      - name: Setup sccache
+        uses: mozilla-actions/sccache-action@v0.0.3
       - name: Generate CMake project on non-Windows platforms
         if: ${{ runner.os != 'Windows' }}
         shell: bash
@@ -88,11 +89,11 @@ jobs:
         if: ${{ runner.os == 'Windows' }}
         shell: bash
         working-directory: ${{ github.workspace }}
-        run: cmake -S . -B ./build/ -D FOSSSWEEPER_ENABLE_TESTS=OFF
+        run: cmake -S . -B ./build/ -G Ninja -D FOSSSWEEPER_ENABLE_TESTS=OFF
       - name: Build CMake project
         shell: bash
         working-directory: ${{ github.workspace }}/build/
-        run: cmake --build . --config ${{ matrix.build_type }}
+        run: cmake --build . --config ${{ matrix.build_type }} -- -j 4
       - name: Run CPack to make the archive
         shell: bash
         working-directory: ${{ github.workspace }}/build/
