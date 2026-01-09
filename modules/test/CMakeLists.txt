@@ -41,7 +41,7 @@ target_link_libraries(fosssweeper_test_auto
 )
 set_target_properties(fosssweeper_test_auto
     PROPERTIES
-    OUTPUT_NAME "fosssweeper tests"
+    OUTPUT_NAME "fosssweeper_tests"
     CXX_STANDARD ${FOSSSWEEPER_CXX_STANDARD}
     CXX_STANDARD_REQUIRED TRUE
 )
