@@ -63,6 +63,15 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: "recursive"
+      - name: Cache wxWidgets build
+        uses: actions/cache@v3
+        with:
+          path: |
+            ${{ github.workspace }}/build/_deps/wxwidgets-src
+            ${{ github.workspace }}/build/_deps/wxwidgets-build
+          key: wxwidgets-${{ runner.os }}-${{ hashFiles('**/CMakeLists.txt') }}
+          restore-keys: |
+            wxwidgets-${{ runner.os }}-
       - name: Update and install Ubuntu packages
         if: ${{ runner.os == 'Linux' }}
         shell: bash
