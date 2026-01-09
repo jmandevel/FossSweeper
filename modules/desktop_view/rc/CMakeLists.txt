@@ -27,7 +27,7 @@ elseif(APPLE)
     set_target_properties(fosssweeper_desktop_view PROPERTIES
               MACOSX_BUNDLE_BUNDLE_NAME "FossSweeper"
               MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
-              MACOSX_BUNDLE_INFO_STRING "An open source clone of a popular mine avoidance game."
+              MACOSX_BUNDLE_INFO_STRING "An open source mine avoidance game."
               MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION}
               MACOSX_BUNDLE_LONG_VERSION_STRING ${PROJECT_VERSION}
               MACOSX_BUNDLE_ICON_FILE "fosssweeper.icns"

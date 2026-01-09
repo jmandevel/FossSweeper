@@ -59,7 +59,7 @@ fosssweeper::AboutDialog::AboutDialog(wxWindow *parent)
   sizer->Add(version, 0, wxALIGN_CENTER | wxDOWN | wxLEFT | wxRIGHT, 20);
 
   auto *const subtext = new wxStaticText(
-      this, wxID_ANY, wxT("An open source clone of a popular mine avoidance game."));
+      this, wxID_ANY, wxT("An open source mine avoidance game."));
   auto subtext_font = subtext->GetFont();
   subtext_font.SetStyle(wxFONTSTYLE_ITALIC);
   sizer->Add(subtext, 0, wxALIGN_CENTER | wxALL, 20);
