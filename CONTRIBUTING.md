@@ -8,6 +8,10 @@ SPDX-License-Identifier: GPL-3.0-or-later
 
 This file explains how to contribute to the FossSweeper project. For standards of behaviour, look at our [Code of Conduct](CODE_OF_CONDUCT.md).
 
+## Forking
+
+FossSweeper is released under the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html). This means that you are free to [fork this repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo#fork-an-example-repository) and make your own alterations to FossSweeper and distribute your modified version. If you do this, you must also distribute your modified source code under the same license at the same places you distribute your version of the game.
+
 ## How to Report a Bug
 
 Report bugs in the [issues board](https://www.github.com/jmandevel/FossSweeper/issues). [Create a new issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/creating-an-issue) with the `Bug Report` template and fill out the form.
