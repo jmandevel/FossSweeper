@@ -47,6 +47,8 @@ public:
   std::array<wxBitmap, static_cast<std::size_t>(fosssweeper::Sprite::Count)>
       _scaledBitmaps;
   fosssweeper::GamePanelState _gamePanelState;
+  bool _needsRedraw = true;
+  bool _timerOnly = false;
   wxBitmap &getBitmap(fosssweeper::Sprite sprite);
 
   GamePanel(fosssweeper::DesktopView &desktop_view, wxFrame *parent, int width,
@@ -64,8 +66,6 @@ public:
 
   bool tryChangePixelScale(int new_pixel_scale);
   int getPixelScale() const noexcept;
-  void drawAll();
-  void drawChanged(bool timer_only = false);
 
   DECLARE_EVENT_TABLE();
 };

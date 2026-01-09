@@ -134,12 +134,12 @@ fosssweeper::GameFrame::GameFrame(fosssweeper::DesktopView &view)
   this->SetClientSize(size.x, size.y);
   this->_gamePanel = new fosssweeper::GamePanel(view, this, size.x, size.y);
   this->SetAutoLayout(true);
-  this->_gamePanel->drawAll();
+  this->Refresh(false);
 }
 
 void fosssweeper::GameFrame::onNew(wxCommandEvent &WXUNUSED(e)) {
   this->_view.get().getGameModel().newGame();
-  this->_gamePanel->drawAll();
+  this->Refresh(false);
 }
 
 void fosssweeper::GameFrame::onBeginner(wxCommandEvent &WXUNUSED(e)) {
@@ -153,7 +153,7 @@ void fosssweeper::GameFrame::onBeginner(wxCommandEvent &WXUNUSED(e)) {
   game_model.newGame(game_configuration);
   auto size = desktop_model.getSize();
   this->resizeGamePanel(size.x, size.y);
-  this->_gamePanel->drawAll();
+  this->_gamePanel->Refresh(false);
 }
 
 void fosssweeper::GameFrame::onIntermediate(wxCommandEvent &WXUNUSED(e)) {
@@ -167,7 +167,7 @@ void fosssweeper::GameFrame::onIntermediate(wxCommandEvent &WXUNUSED(e)) {
   game_model.newGame(game_configuration);
   auto size = desktop_model.getSize();
   this->resizeGamePanel(size.x, size.y);
-  this->_gamePanel->drawAll();
+  this->_gamePanel->Refresh(false);
 }
 
 void fosssweeper::GameFrame::onExpert(wxCommandEvent &WXUNUSED(e)) {
@@ -181,7 +181,7 @@ void fosssweeper::GameFrame::onExpert(wxCommandEvent &WXUNUSED(e)) {
   game_model.newGame(game_configuration);
   auto size = desktop_model.getSize();
   this->resizeGamePanel(size.x, size.y);
-  this->_gamePanel->drawAll();
+  this->_gamePanel->Refresh(false);
 }
 
 void fosssweeper::GameFrame::onCustom(wxCommandEvent &WXUNUSED(e)) {
@@ -196,14 +196,14 @@ void fosssweeper::GameFrame::onCustom(wxCommandEvent &WXUNUSED(e)) {
     game_model.newGame(game_configuration);
     auto size = desktop_model.getSize();
     this->resizeGamePanel(size.x, size.y);
-    this->_gamePanel->drawAll();
+    this->_gamePanel->Refresh(false);
   }
 }
 
 void fosssweeper::GameFrame::onQuestionMarks(wxCommandEvent &WXUNUSED(e)) {
   const auto questions_enabled = this->_questionMarksItem->IsChecked();
   this->_view.get().getGameModel().setQuestionsEnabled(questions_enabled);
-  this->_gamePanel->drawChanged();
+  this->_gamePanel->Refresh(false);
 }
 
 void fosssweeper::GameFrame::onPixelScale(wxCommandEvent &e) {
@@ -216,7 +216,7 @@ void fosssweeper::GameFrame::onPixelScale(wxCommandEvent &e) {
             pixel_scale_dialog.getPixelScale())) {
       const auto size = desktop_model.getSize();
       this->resizeGamePanel(size.x, size.y);
-      this->_gamePanel->drawAll();
+      this->_gamePanel->Refresh(false);
     }
   }
 }
