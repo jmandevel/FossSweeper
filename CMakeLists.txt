@@ -20,7 +20,7 @@ string(COMPARE EQUAL "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_SOURCE_DIR}" FOSSSWE
 
 project(
     fosssweeper
-    VERSION 1.0.1.0
+    VERSION 1.1.0.0
     DESCRIPTION "An open source mine avoidance game"
     LANGUAGES C CXX
 )
