@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU General Public License along with FossSweeper. If not, see <https://www.gnu.org/licenses/>.
 # 
 
-cmake_minimum_required(VERSION 4.2.1)
+cmake_minimum_required(VERSION 3.31.6)
 
 string(COMPARE EQUAL "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_SOURCE_DIR}" FOSSSWEEPER_STANDALONE)
 
